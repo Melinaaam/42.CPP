@@ -9,16 +9,23 @@ contact, remplacez le plus ancien par celui-ci.
 
 PhoneBook::PhoneBook(void)
 {
-	std::cout << "Entrez un contact :" << std::endl;
 
-	Contact contact;
-	// std::cout << "one contact : " << one_contact.FirstName << std::endl;
+	for (int i = 0; i < 8; i++)
+	{
+		CreateContact();
+	}
 
+	afficherContact();
 	return;
 }
 
 void    PhoneBook::afficherContact() const
 {
-    std::cout << "FIRST CONTACT: " << std::endl;
-    m_contact.afficher();
+	std::cout << "FIRST CONTACT: " << std::endl;
+	m_contact.afficher();
+}
+
+void    PhoneBook::CreateContact()
+{
+	m_contact.Create();
 }
