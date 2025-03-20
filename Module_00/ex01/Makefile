@@ -1,16 +1,18 @@
 # Nom du programme
-NAME = 
+NAME = PhoneBook
 
 # Compilateur et options
 CC = clang++
-CXXFLAGS = -Wall -Werror -Wextra 
+CXXFLAGS = -Wall -Werror -Wextra
 
 # Dossiers
 SRCDIR = sources
 OBJDIR = objets
 
 # Fichiers sources et objets
-SRCS = 
+SRCS = main.cpp \
+		PhoneBook.cpp \
+		Contact.cpp
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 # Couleurs
