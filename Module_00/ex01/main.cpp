@@ -1,9 +1,5 @@
 #include "PhoneBook.hpp"
 
-// struct args
-// {
-//     if ()
-// }
 
 int main()
 {

@@ -2,6 +2,7 @@
 #define PHONEBOOK_HPP
 #include <iostream>
 #include<string>
+#include "Contact.hpp"
 
 /*Représente le répertoire.
 ◦ Contient un tableau de contacts.
@@ -22,9 +23,10 @@ class PhoneBook
 {
 	public :
 	PhoneBook(void);
-
-	int nb_contact;
-	Contact t_contacts[8];
+	void afficherContact() const;
+	// int nb_contact;
+	private :
+	Contact m_contact;
 };
 
 #endif

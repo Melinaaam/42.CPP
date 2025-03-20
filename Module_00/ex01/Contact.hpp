@@ -16,6 +16,7 @@ class Contact
 	public:
 	//constructeur
 	Contact(void);
+	void Create();
 	std::string FirstName;
 	std::string LastName;
 	std::string NickName;
