@@ -1,42 +1,89 @@
 #include "Contact.hpp"
-/*Représente un contact dans le répertoire.*/
-    //Représente un contact dans le répertoire
-    // first name (prénom)
-    //last name (nom de famille)
-    //nickname (surnom)
-    //phone number (numéro de téléphone)
-    //darkest secret (son plus lourd secret)
+
 Contact::Contact(void)
 {
-	Create();
 	return;
 };
-void Contact::afficher() const
-{
-	std::cout << FirstName << std::endl;
-	std::cout << LastName << std::endl;
-	std::cout << NickName << std::endl;
-	std::cout << PhoneNumber << std::endl;
-	std::cout << Secret << std::endl;
-}
 
-void Contact::Create()
+void Contact::Create_First_Name()
 {
 	std::cout << "Enter first name : " << std::endl;
-	std::cin >> FirstName;
-	//sauve le first name etc...
-
+    std::getline(std::cin, FirstName);
+}
+void Contact::Create_Last_Name()
+{
 	std::cout << "Enter last name : " << std::endl;
-	std::cin >> LastName;
-
+    std::getline(std::cin, LastName);
+}
+void Contact::Create_Nick_Name()
+{
 	std::cout << "Enter nick name : " << std::endl;
-	std::cin >> NickName;
-
+    std::getline(std::cin, NickName);
+}
+void Contact::Create_Phone_Number()
+{
 	std::cout << "Enter phone number : " << std::endl;
-	std::cin >> PhoneNumber;
+    std::getline(std::cin, PhoneNumber);
+}
+void Contact::Create_Darkest_Secret()
+{
+	std::cout << "Enter your darkest secret : " << std::endl;
+    std::getline(std::cin, Secret);
+}
 
-	std::cout << "darkest secret : " << std::endl;
-	std::cin >> Secret;
+void Contact::Create_One_Contact()//manque getion multiple espaces et tabs
+{
+	do {
+		Create_First_Name();
+		if (FirstName.empty())
+            std::cout << "First Name can't be empty. Please retry." << std::endl;
+	}while (FirstName.empty());
 
-	std::cout << "contact creer " << std::endl;
+	do {
+		Create_Last_Name();
+		if (LastName.empty())
+			std::cout << "Last Name can't be empty. Please retry." << std::endl;
+	}while(LastName.empty());
+
+	do{
+		Create_Nick_Name();
+		if (NickName.empty())
+			std::cout << "Nick Name can't be empty. Please retry." << std::endl;
+	}while(NickName.empty());
+
+	do{
+		Create_Phone_Number();
+		if (PhoneNumber.empty())
+			std::cout << "Phone Number can't be empty. Please retry." << std::endl;
+	}while(PhoneNumber.empty());
+
+	do{
+		Create_Darkest_Secret();
+		if (Secret.empty())
+			std::cout << "Your darkest secret can't be empty. Please retry." << std::endl;
+	}while(Secret.empty());
+}
+
+
+/*****************AFFICHER******************* */
+std::string Contact::getFirstName() const
+{
+	return FirstName;
+}
+
+std::string Contact::getLastName() const
+{
+	return LastName;
+}
+
+std::string Contact::getNickName() const{
+	return NickName;
+}
+
+std::string	Contact::getPhoneNumber() const{
+	return PhoneNumber;
+}
+
+std::string Contact::getSecret() const{
+	return Secret;
 }
