@@ -5,21 +5,10 @@
 #include<string>
 #include <limits>
 
-
-/*Représente un contact dans le répertoire.*/
-	//Représente un contact dans le répertoire
-    // first name (prénom)
-    //last name (nom de famille)
-    //nickname (surnom)
-    //phone number (numéro de téléphone)
-    //darkest secret (son plus lourd secret)
 class Contact
 {
-	public://fonctions publiques pour modifier et lire ces attributs
+	public:
 	Contact(void);
-	// void Create();
-	// void afficher() const;
-
 	void Create_First_Name();
 	void Create_Last_Name();
 	void Create_Nick_Name();
@@ -39,7 +28,6 @@ class Contact
 	std::string NickName;
 	std::string PhoneNumber;
 	std::string Secret;
-	
 };
 
 #endif

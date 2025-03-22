@@ -10,7 +10,6 @@ PhoneBook::PhoneBook(void)
 void	PhoneBook::CreateContact()
 {
 	Phone_Book[new_count].Create_One_Contact();
-	std::cout << "Contact ajouté à l’index " << count << std::endl;
 
 	if(count < 8)
 		count ++;
@@ -29,15 +28,10 @@ std::string SearchFormat(const std::string &str)
 
 void PhoneBook::DisplayPhonebook()
 {
-	// if (count == 0)
-    // {
-    //     std::cout << "The PhoneBook is empty" << std::endl;
-    //     return;
-    // }
 	std::cout << "|**********|**********|**********|**********|" << std::endl;
-	std::cout << "|" 
+	std::cout << "|"
 		<< "   Index  "
-	 	<< "|" << SearchFormat("First name")
+		<< "|" << SearchFormat("First name")
 		<< "|" << SearchFormat("Last name")
 		<< "|" << SearchFormat("Nick name") << "|" << std::endl;
 
@@ -57,10 +51,10 @@ void PhoneBook::DisplayPhonebook()
 void PhoneBook::searchContact()
 {
 	if (count == 0)
-    {
-        std::cout << "The PhoneBook is empty" << std::endl;
-        return;
-    }
+	{
+		std::cout << "The PhoneBook is empty" << std::endl;
+		return;
+	}
 	DisplayPhonebook();
 	std::string answer;
 	std::cout << "Wich contact do you want see?" << std::endl;
