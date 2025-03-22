@@ -40,7 +40,7 @@ void PhoneBook::DisplayPhonebook()
 		std::stringstream string;
 		string << i;
 		std::string indexStr = string.str();
-		std::cout << "|" << SearchFormat(indexStr)
+		std::cout << "|         " << (i + 1)
 				<< "|" << SearchFormat(Phone_Book[i].getFirstName())
 				<< "|" << SearchFormat(Phone_Book[i].getLastName())
 				<< "|" << SearchFormat(Phone_Book[i].getNickName()) << "|" << std::endl;
@@ -58,13 +58,25 @@ void PhoneBook::searchContact()
 	DisplayPhonebook();
 	std::string answer;
 	std::cout << "Wich contact do you want see?" << std::endl;
-	std::getline(std::cin, answer);
+	
+	while(true)
+	{
+		std::getline(std::cin, answer);
 
-	int num_contact;
-	std::istringstream iss(answer);
-	iss >> num_contact;
-	std::cout << "You choose contact nb : " << num_contact << std::endl;
-	afficherContact(num_contact);
+		int num_contact;
+		std::istringstream iss(answer);
+		iss >> num_contact;
+		if (num_contact > 0 && num_contact <= count)
+		{
+			std::cout << "You choose contact nb : " << num_contact << std::endl;
+			afficherContact(num_contact);
+			break;
+		}
+		else if(count == 1)
+			std::cout << "This contact doesn't exist. Please choose 1 " << std::endl;
+		else 
+			std::cout << "This contact doesn't exist. Please choose between 1 and " << count << std::endl;
+	}
 }
 /*****************AFFICHER******************* */
 void    PhoneBook::afficherContact(int i) const
