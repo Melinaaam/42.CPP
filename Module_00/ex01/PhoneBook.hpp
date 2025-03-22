@@ -10,7 +10,7 @@ class PhoneBook
 {
 	public :
 	PhoneBook(void);
-
+	~PhoneBook(void);
 	Contact Phone_Book[8];
 
 	void CreateContact();

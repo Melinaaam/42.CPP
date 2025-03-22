@@ -7,6 +7,12 @@ PhoneBook::PhoneBook(void)
 	new_count = 0;
 	return;
 }
+
+PhoneBook::~PhoneBook(void)
+{
+	count = 0;
+	new_count = 0;
+}
 void	PhoneBook::CreateContact()
 {
 	Phone_Book[new_count].Create_One_Contact();

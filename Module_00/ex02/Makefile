@@ -3,7 +3,7 @@ NAME = Account
 
 # Compilateur et options
 CC = clang++
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98
+CXXFLAGS = -Wall -Werror -Wextra  -std=c++98
 
 # Dossiers
 SRCDIR = sources

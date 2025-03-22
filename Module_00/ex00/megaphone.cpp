@@ -9,8 +9,8 @@ int main(int ac, char *av[])
         for(int i = 1; i < ac; i++)
        { 
             std::string argument = av[i];
-            for (char &c : argument)
-                c = std::toupper(c);
+            for (std::size_t i = 0; i < argument.size(); ++i)
+                argument[i] = std::toupper(argument[i]);
             std::cout << argument;
         }
         std::cout << std::endl;

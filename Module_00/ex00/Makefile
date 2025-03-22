@@ -3,7 +3,7 @@ NAME = megaphone
 
 # Compilateur et options
 CC = clang++
-CXXFLAGS = -Wall -Werror -Wextra 
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 
 # Dossiers
 SRCDIR = sources
