@@ -4,5 +4,18 @@
 
 #include<iostream>
 #include<string>
+#include"Weapon.hpp"
+
+class HumanA
+{
+    public:
+    HumanA(void);
+    ~HumanA(void);
+    void attack();
+
+    private:
+    Weapon      _weapon;
+    std::string _name;
+};
 
 #endif
