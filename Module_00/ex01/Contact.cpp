@@ -18,17 +18,20 @@ bool	is_just_space(const std::string &str)
 void Contact::Create_First_Name()
 {
 	std::cout << "Enter first name : " << std::endl;
-    std::getline(std::cin, FirstName);
+    if(!std::getline(std::cin, FirstName))
+		return;
 }
 void Contact::Create_Last_Name()
 {
 	std::cout << "Enter last name : " << std::endl;
-    std::getline(std::cin, LastName);
+    if(!std::getline(std::cin, LastName))
+		return;
 }
 void Contact::Create_Nick_Name()
 {
 	std::cout << "Enter nick name : " << std::endl;
-    std::getline(std::cin, NickName);
+    if(!std::getline(std::cin, NickName))
+		return;
 }
 void Contact::Create_Phone_Number()
 {
@@ -38,7 +41,8 @@ void Contact::Create_Phone_Number()
 void Contact::Create_Darkest_Secret()
 {
 	std::cout << "Enter your darkest secret : " << std::endl;
-    std::getline(std::cin, Secret);
+    if(!std::getline(std::cin, Secret))
+		return;
 }
 
 void Contact::Create_One_Contact()

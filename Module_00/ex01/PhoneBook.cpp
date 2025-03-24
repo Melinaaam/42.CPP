@@ -67,7 +67,8 @@ void PhoneBook::searchContact()
 	
 	while(true)
 	{
-		std::getline(std::cin, answer);
+		if(!std::getline(std::cin, answer))
+			return;
 
 		int num_contact;
 		std::istringstream iss(answer);
@@ -91,9 +92,9 @@ void    PhoneBook::afficherContact(int i) const
 		std::cout << "Invalide i" << std::endl;
 		return;
 	}
-	std::cout << "First name : " << Phone_Book[i].getFirstName() << std::endl;
-	std::cout << "Lastname : " << Phone_Book[i].getLastName() << std::endl;
-	std::cout << "Nick name : " << Phone_Book[i].getNickName() << std::endl;
-	std::cout << "Phone number : " << Phone_Book[i].getPhoneNumber() << std::endl;
-	std::cout << "Darck secret : " << Phone_Book[i].getSecret() << std::endl;
+	std::cout << "First name : " << Phone_Book[i - 1].getFirstName() << std::endl;
+	std::cout << "Lastname : " << Phone_Book[i - 1].getLastName() << std::endl;
+	std::cout << "Nick name : " << Phone_Book[i - 1].getNickName() << std::endl;
+	std::cout << "Phone number : " << Phone_Book[i - 1].getPhoneNumber() << std::endl;
+	std::cout << "Darck secret : " << Phone_Book[i - 1].getSecret() << std::endl;
 }
