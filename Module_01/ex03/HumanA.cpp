@@ -1,16 +1,22 @@
 #include"HumanA.hpp"
 #include "Weapon.hpp"
 
-HumanA::HumanA()
+HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon)
 {
-//While HumanA takes the Weapon in its constructor, HumanB does not.//While HumanA takes the Weapon in its constructor, HumanB does not.
-//HumanB may not always have a weapon, whereas HumanA will always be armed
+    
+    std::cout << name << " construct HumanA" << std::endl;
 }
 void HumanA::attack()
 {
-    std::cout >> Weapon::getType() >> "attacks with their" >> Weapon::
-    // /<name> attacks with their <weapon type>
-    //<weapon type> sera remplacé par le type d'arme, obtenu via la méthode getType() de la classe Weapon.
+    std::cout << this->getName() << " attacks with their " << _weapon.getType() << std::endl;
+}
+const std::string &HumanA::getName() const
+{
+    return _name;
+}
+void HumanA::setName(const std::string &newName)
+{
+    _name = newName;
 }
 
 HumanA::~HumanA()
