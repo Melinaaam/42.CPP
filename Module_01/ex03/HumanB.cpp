@@ -1,16 +1,16 @@
 #include"HumanB.hpp"
 
-HumanB::HumanB(std::string name) : _name(name)
+HumanB::HumanB(std::string name) : _name(name), _weapon(NULL)
 {
-    std::cout << name << " construct HumanB" << std::endl;
-//While HumanA takes the Weapon in its constructor, HumanB does not.
-//HumanB may not always have a weapon, whereas HumanA will always be armed
+
 }
 
 void HumanB::attack()
 {
-    std::cout << getName() << " attacks with their " << &Weapon::getType << std::endl;
-    // /<name> attacks with their <weapon type>
+    if(_weapon == NULL)
+        std::cout << getName() << " don't have any weapon " << std::endl;
+    else
+        std::cout << getName() << " attacks with their " << _weapon->getType() << std::endl;
 }
 const std::string &HumanB::getName() const
 {
@@ -20,11 +20,11 @@ void HumanB::setName(const std::string &newName)
 {
     _name = newName;
 }
-void HumanB::setWeapon(Weapon Weapon)
+void HumanB::setWeapon(Weapon &Weapon)
 {
-    
+    _weapon = &Weapon;
 }
 HumanB::~HumanB()
 {
-
+    
 }

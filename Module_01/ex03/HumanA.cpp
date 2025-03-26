@@ -3,8 +3,7 @@
 
 HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon)
 {
-    
-    std::cout << name << " construct HumanA" << std::endl;
+
 }
 void HumanA::attack()
 {

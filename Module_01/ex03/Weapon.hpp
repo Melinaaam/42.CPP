@@ -1,6 +1,5 @@
-#pragma once
-#ifndef __WEAPON_H__
-# define __WEAPON_H__
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
 # include <iostream>
 # include <string>

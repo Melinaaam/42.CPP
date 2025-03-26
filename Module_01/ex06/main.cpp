@@ -14,29 +14,25 @@ int main(int ac, char **av)
 		{
 			case 0 :
 			harl.complain("DEBUG");
-			std::cout << std::endl;
 			break;
 
 			case 1 :
 			harl.complain("INFO");
-			std::cout << std::endl;
 			break;
 
 			case 2 :
 			harl.complain("WARNING");
-			std::cout << std::endl;
 			break;
 
 			case 3 :
 			harl.complain("ERROR");
-			std::cout << std::endl;
 			break;
 
-			case 4 :
+			default :
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 			break;
 		}
 
 	}
-
     return 0;
 }

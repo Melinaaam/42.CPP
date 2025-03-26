@@ -1,9 +1,9 @@
 # Nom du programme
-NAME = HITHISISBRAIN
+NAME = ex02
 
 # Compilateur et options
-CC = clang++
-CXXFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
+CC = c++
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 
 # Dossiers
 SRCDIR = sources

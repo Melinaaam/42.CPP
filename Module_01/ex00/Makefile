@@ -1,8 +1,8 @@
 # Nom du programme
-NAME = BraiiiiiiinnnzzzZ
+NAME = ex00
 
 # Compilateur et options
-CC = clang++
+CC = c++
 CXXFLAGS = -Wall -Werror -Wextra  -std=c++98
 
 # Dossiers

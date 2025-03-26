@@ -1,5 +1,5 @@
 # Nom du programme
-NAME = ex03
+NAME = ex04
 
 # Compilateur et options
 CC = c++
@@ -10,10 +10,7 @@ SRCDIR = sources
 OBJDIR = objets
 
 # Fichiers sources et objets
-SRCS = main.cpp \
-	Weapon.cpp \
-	HumanA.cpp \
-	HumanB.cpp
+SRCS = main.cpp 
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 # Couleurs

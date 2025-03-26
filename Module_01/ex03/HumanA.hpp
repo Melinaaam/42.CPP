@@ -1,6 +1,5 @@
-#pragma once
-#ifndef __HUMANA_H__
-#define __HUMANA_H__
+#ifndef HUMANA_HPP
+#define HUMANA_HPP
 
 #include<iostream>
 #include<string>
