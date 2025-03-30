@@ -2,7 +2,7 @@
 NAME = PhoneBook
 
 # Compilateur et options
-CC = clang++
+CC = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 
 # Dossiers
