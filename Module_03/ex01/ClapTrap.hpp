@@ -6,7 +6,7 @@
 
 class ClapTrap
 {
-private:
+protected:
 	std::string _Name;
 	int			_HitPoints;
 	int			_EnergyPoints;
@@ -17,7 +17,7 @@ public:
 	ClapTrap(std::string name);// Constructeur
 	ClapTrap(const ClapTrap& copy);    // Constructeur de copie
 	ClapTrap& operator=(const ClapTrap& other);// A copy assignment operator overload.
-	~ClapTrap(void);
+	~ClapTrap(void); //Des
 
 	std::string getName() const;
 

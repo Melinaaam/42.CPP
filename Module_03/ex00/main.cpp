@@ -2,11 +2,17 @@
 
 int main()
 {
-	ClapTrap First("David");
-	ClapTrap second("Goliath");
-	std::cout << "First claptrap name's : " << First.getName() << std::endl;
-	std::cout << "Second claptrap name's : " << second.getName() << std::endl;
-	First.attack(second.getName());
-	second.beRepaired(1);
-	return 0;
+    ClapTrap David("David");
+    ClapTrap Goliath("Goliath");
+	ClapTrap cpyGoliath(Goliath);
+	std::cout << std::endl;
+
+    David.attack(Goliath.getName());
+    Goliath.takeDamage(30);
+    Goliath.beRepaired(5);
+
+    for (int i = 0; i < 50; ++i){
+        David.attack(Goliath.getName());
+    }
+    return 0;
 }
