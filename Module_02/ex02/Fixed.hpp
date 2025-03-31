@@ -20,20 +20,24 @@ public:
 	void setRawBits( int const raw );
 	int toInt( void ) const;
 	float toFloat( void ) const;
+	//6 operator comparaison :
 	bool operator>(const Fixed& other) const;
 	bool operator<(const Fixed& other) const;
 	bool operator>=(const Fixed& other) const;
 	bool operator<=(const Fixed& other) const;
 	bool operator==(const Fixed& other) const;
 	bool operator!=(const Fixed& other) const;
+	//4 arithmetic operators : 
 	Fixed operator+(const Fixed& other) const;
 	Fixed operator-(const Fixed& other) const;
 	Fixed operator*(const Fixed& other) const;
 	Fixed operator/(const Fixed& other) const;
+	//pre-incr/ post-incr/ pre-decre/ post-decre:
 	Fixed& operator++();
 	Fixed operator++(int);
 	Fixed& operator--();
 	Fixed operator--(int);
+	
 	static Fixed& min(Fixed& a, Fixed& b);
 	static const Fixed& min(const Fixed& a, const Fixed& b);
 	static Fixed& max(Fixed& a, Fixed& b);

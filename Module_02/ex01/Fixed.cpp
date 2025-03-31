@@ -19,10 +19,10 @@ Fixed::Fixed(const int i)
 }
 Fixed::Fixed(const float f)
 {
-    std::cout << "Float constructor called" << std::endl;
     // On convertit le flottant en valeur fixe en multipliant par 2^_fractBits, dc 2 puissance 8, soit 256
-    // et en arrondissant au plus proche. std::round pour trouver l'arrondi,prend un float en param
-    _fixedValue = static_cast<int>(round(f * (1 << _fractBits)));
+    // et en arrondissant au plus proche. (round) pour trouver l'arrondi,prend un float en param
+    std::cout << "Float constructor called" << std::endl;
+    _fixedValue = (round(f * (1 << _fractBits)));
 }
 
 Fixed::~Fixed()

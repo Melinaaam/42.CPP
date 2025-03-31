@@ -7,7 +7,9 @@ SRCDIR = sources
 OBJDIR = objets
 
 SRCS = main.cpp \
-	Fixed.cpp
+	Fixed.cpp \
+	Point.cpp \
+	bsp.cpp
 OBJS = $(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 # Couleurs
