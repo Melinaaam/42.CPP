@@ -16,7 +16,7 @@ public:
 	ClapTrap(); // Constructeur par défaut.
 	ClapTrap(std::string name);// Constructeur
 	ClapTrap(const ClapTrap& copy);    // Constructeur de copie
-	ClapTrap& operator=(const ClapTrap& other);// A copy assignment operator overload.
+	ClapTrap& operator=(const ClapTrap& other);// Constructeur de copie.
 	~ClapTrap(void);
 
 	std::string getName() const;

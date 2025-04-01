@@ -4,14 +4,14 @@ ClapTrap::ClapTrap() : _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 {
 	std::cout << "Default Constructor called !" << std::endl;
 }
-ClapTrap::ClapTrap(std::string name) : _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+ClapTrap::ClapTrap(std::string name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 {
 	std::cout << "Constructor of " << name << " called !" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& copy)
 {
-	std::cout << "Copy constructor of  " << copy._Name << " called !" << std::endl;
+	std::cout << "Copy constructor of " << copy._Name << " called !" << std::endl;
 	*this = copy;
 }
 

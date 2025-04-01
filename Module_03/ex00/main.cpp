@@ -8,10 +8,10 @@ int main()
 	std::cout << std::endl;
 
     David.attack(Goliath.getName());
-    Goliath.takeDamage(30);
+    Goliath.takeDamage(3);
     Goliath.beRepaired(5);
 
-    for (int i = 0; i < 50; ++i){
+    for (int i = 0; i < 10; ++i){
         David.attack(Goliath.getName());
     }
     return 0;

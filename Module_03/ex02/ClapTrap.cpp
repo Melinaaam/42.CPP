@@ -1,10 +1,10 @@
 #include"ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+ClapTrap::ClapTrap() : _HitPoints(10), _EnergyPoints(10), _AttackDamage(30)
 {
 	std::cout << "ClapTrap Default Constructor called !" << std::endl;
 }
-ClapTrap::ClapTrap(std::string name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+ClapTrap::ClapTrap(std::string name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(30)
 {
 	std::cout << "ClapTrap Constructor of " << name << " called !" << std::endl;
 }
