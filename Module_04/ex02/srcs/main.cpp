@@ -4,14 +4,17 @@
 #include"WrongAnimal.hpp"
 #include"WrongCat.hpp"
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include <iostream>
+/*
+Différence entre virtual et virtual pure
 
+virtual : Une fonction virtuelle peut avoir une implémentation dans la classe de base,
+		mais elle peut être redéfinie dans les classes dérivées.
+virtual pure : Une fonction virtuelle pure n'a pas d'implémentation dans la classe de base
+			et doit être implémentée dans les classes dérivées. Elle est déclarée avec = 0.
+*/
 int main()
 {
-    const int n = 10;
+	const int n = 10;
     Animal* animals[n];
 
     std::cout << "\033[38;5;32mCreation of animals 🐾 :\033[0m" << std::endl;

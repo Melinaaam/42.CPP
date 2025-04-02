@@ -1,35 +1,32 @@
-#include"Dog.hpp"
+#include"Cat.hpp"
 
-Dog::Dog() : Animal()
+Cat::Cat() : Animal()
 {
-    _type = "Dog";
+    _type = "Cat";
 	_brain = new Brain();
     std::cout << _type << " default constructor called !" << std::endl;
 }
 
-Dog::Dog(const Dog& copy) : Animal(copy)
+Cat::Cat(const Cat& copy) : Animal(copy)
 {
     std::cout << _type << " copy constructor called !" << std::endl;
 	this->_brain = new Brain(*(copy._brain)); // Copie profonde : Une copie "superficielle" (ou shallow copy) copierait simplement le pointeur Brain*, ce qui signifierait que deux objets Dog pointeraient vers le même Brain. Si l'un des objets est détruit, il va supprimer le Brain, laissant l'autre objet avec un pointeur invalide
 }
-Dog& Dog::operator=(const Dog& other)
+Cat& Cat::operator=(const Cat& other)
 {
     if(this != &other)
 	{
 		Animal::operator=(other);
-		delete this->_brain;  // Libérer ancien brain
-		this->_brain = new Brain(*(other._brain));  // Copie profonde
+		delete this->_brain;
+        this->_brain = new Brain(*(other._brain));
 	}
     return *this;
 }
 
-Dog::~Dog(void)
+Cat::~Cat(void)
 {
-    std::cout << _type << " detructor called !" << std::endl;
+	std::cout << _type << " destructor called !" << std::endl;
 	delete _brain;
 }
 
-void Dog::makeSound() const
-{
-        std::cout << "🐶 Waf Waf 🐶" << std::endl;
-}
+void Cat::makeSound() const{std::cout << "🐈 Miaou Miaou 🐈" << std::endl;}

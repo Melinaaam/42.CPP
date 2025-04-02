@@ -7,7 +7,6 @@ class WrongCat : public WrongAnimal
 {
 public:
     WrongCat(void);
-    WrongCat(std::string name);
 	WrongCat(const WrongCat& copy);
 	WrongCat& operator=(const WrongCat& other);
     virtual ~WrongCat(void);

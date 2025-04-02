@@ -23,15 +23,15 @@ int main()
     std::cout << "\033[38;5;32mCat && Dog initialised by Cat && Dog :\033[0m" << std::endl;
     const Animal* MyAnimal = new Animal;
     const Cat* MyCat = new Cat;
-    const Dog* MyDog = new Dog; 
+    const Dog* MyDog = new Dog;
 
     std::cout << std::endl;
     std::cout << "\033[38;5;220mMyAnimal is a: \033[0m" << MyAnimal->getType() << " and it make : ";
     MyAnimal->makeSound();
-    
+
     std::cout << "\033[38;5;220mMyCat is a: \033[0m" << MyCat->getType() << " and it make : ";
     MyCat->makeSound();
-    
+
     std::cout << "\033[38;5;220mMyDog is a: \033[0m" << MyDog->getType() << " and it make : ";
     MyDog->makeSound();
 
@@ -43,22 +43,22 @@ int main()
     std::cout << std::endl << "\033[38;5;32mCat && Dog initialised by Animal :\033[0m" << std::endl;
     const Animal* AAnimal = new Animal;
     const Animal* ACat = new Cat;
-    const Animal* ADog = new Dog; 
+    const Animal* ADog = new Dog;
 
 
     std::cout << std::endl << "\033[38;5;220mAAnimal is a: \033[0m" << AAnimal->getType() << " and it make : ";
     AAnimal->makeSound();
-    
+
     std::cout << "\033[38;5;220mACat is a: \033[0m" << ACat->getType() << " and it make : ";
     ACat->makeSound();
-    
+
     std::cout << "\033[38;5;220mADog is a: \033[0m" << ADog->getType() << " and it make : ";
     ADog->makeSound();
 
     std::cout << std::endl << "\033[38;5;32mInstances delete  :\033[0m" << std::endl;
-    delete MyAnimal;
-    delete MyCat;
-    delete MyDog;
+    delete AAnimal;
+    delete ACat;
+    delete ADog;
 
     std::cout << std::endl << "\033[38;5;32mWrong Animals initialised :\033[0m" << std::endl;
     const WrongAnimal* MyWrongAnimal = new WrongAnimal;
@@ -66,10 +66,17 @@ int main()
 
     std::cout << std::endl << "\033[38;5;220mMyWrongAnimal is a: \033[0m" << MyWrongAnimal->getType() << " and it make : ";
     MyWrongAnimal->makeSound();
-    
+
     std::cout << "\033[38;5;220mMyWrongCat is a: \033[0m" << MyWrongCat->getType() << " and it make : ";
     MyWrongCat->makeSound();
-    
+
+	std::cout << std::endl << "\033[38;5;32mWrong Cat initialised as WrongAnimal :\033[0m" << std::endl;
+	const WrongAnimal* WrongCatAsAnimal = new WrongCat;
+	std::cout << "\033[38;5;220mWrongCatAsAnimal is a: \033[0m" << WrongCatAsAnimal->getType() << " and it make : ";
+	WrongCatAsAnimal->makeSound();  // Ceci devrait appeler la méthode de WrongAnimal, pas de WrongCat
+	std::cout << std::endl << "\033[38;5;32mInstance delete :\033[0m" << std::endl;
+	delete WrongCatAsAnimal;
+
     std::cout << std::endl << "\033[38;5;32mInstances delete  :\033[0m" << std::endl;
     delete MyWrongAnimal;
     delete MyWrongCat;

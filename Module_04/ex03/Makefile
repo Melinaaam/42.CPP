@@ -1,4 +1,4 @@
-NAME = ex01
+NAME = ex03
 
 CC = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
@@ -7,13 +7,7 @@ INCLUDES = -Iincludes
 SRCDIR = srcs
 OBJDIR = objets
 
-SRCS_NAME = Animal.cpp \
-			main.cpp \
-			Cat.cpp \
-			Dog.cpp \
-			WrongCat.cpp \
-			WrongAnimal.cpp \
-			Brain.cpp
+SRCS_NAME = main.cpp
 OBJS_NAME = $(SRCS_NAME:.cpp=.o)
 
 SRCS        =    $(addprefix $(SRCDIR)/,$(SRCS_NAME))

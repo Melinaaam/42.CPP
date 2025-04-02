@@ -2,7 +2,8 @@
 #define ANIMAL_HPP
 #include<string>
 #include<iostream>
-
+/*La class Animal est maintenant abstraite car makesound est defini  0
+DONC on est oblige de les param dans les class filles*/
 class Animal
 {
 protected:
@@ -14,9 +15,7 @@ public:
 	virtual ~Animal(void);
 
     std::string getType() const;
-    virtual void makeSound() const; //virtual rends l'appel a la fonction dynamique,
-                                //le compilateur va chercher le "vrai" type pour afficher le bon message
-                                //on appel ce type de fonction : methode
+    virtual void makeSound() const = 0; // Fonction virtuelle pure
 };
 
 #endif

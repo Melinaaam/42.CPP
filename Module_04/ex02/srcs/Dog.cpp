@@ -28,8 +28,4 @@ Dog::~Dog(void)
     std::cout << _type << " detructor called !" << std::endl;
 	delete _brain;
 }
-
-void Dog::makeSound() const
-{
-        std::cout << "🐶 Waf Waf 🐶" << std::endl;
-}
+void Dog::makeSound() const{std::cout << "🐶 Waf Waf 🐶" << std::endl;}
