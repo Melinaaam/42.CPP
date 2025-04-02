@@ -11,6 +11,9 @@ ScavTrap::ScavTrap() : ClapTrap()
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "******* ScavTrap Constructor of " << name << " called !" << std::endl;
+    _HitPoints = 100;
+    _EnergyPoints = 50;
+    _AttackDamage = 20;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy)

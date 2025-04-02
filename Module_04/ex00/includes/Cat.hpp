@@ -5,13 +5,14 @@
 
 class Cat : public Animal
 {
+public:
     Cat(void);
     Cat(std::string name);
 	Cat(const Cat& copy);
 	Cat& operator=(const Cat& other);
-    ~Cat(void);
+    virtual ~Cat(void);
 
-    virtual void makeSound();
+    virtual void makeSound() const;
 };
 
 #endif

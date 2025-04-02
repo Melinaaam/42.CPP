@@ -27,13 +27,17 @@ int main()
     // std::cout << std::endl;
 
     std::cout << "******* Test de FragTrap *******" << std::endl;
+    std::cout << "\033[38;5;220mInstances init :\033[0m" << std::endl;
     FragTrap Athena("Athena");
     FragTrap Ulysse("Ulysse");
-    FragTrap cpyUlysse(Ulysse);
     std::cout << std::endl;
+
+    std::cout << "\033[38;5;220mInstances tests :\033[0m" << std::endl;
     Athena.attack("Ulysse");
     Ulysse.takeDamage(20);
     Ulysse.beRepaired(10);
     Athena.highFivesGuys();
+
+    std::cout << std::endl << "\033[38;5;220mInstances delete :\033[0m" << std::endl;
     return 0;
 }

@@ -1,7 +1,7 @@
 #ifndef DIAMOND_TRAP
 #define DIAMOND_TRAP
 
-#include"ClapTrap.hpp"
+// #include"ClapTrap.hpp"
 #include"ScavTrap.hpp"
 #include"FragTrap.hpp"
 
@@ -11,7 +11,7 @@ private:
     std::string _Name;
 public:
     DiamondTrap(); // Constructeur par défaut.
-    DiamondTrap(std::string name);// Constructeur
+    DiamondTrap(const std::string name);// Constructeur
     DiamondTrap(const DiamondTrap& copy);    // Constructeur de copie
     ~DiamondTrap(void); //Destructeur
     DiamondTrap& operator=(const DiamondTrap& other);// A copy assignment operator overload.

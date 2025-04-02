@@ -1,6 +1,6 @@
 #include"ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+ClapTrap::ClapTrap() : _Name(""), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 {
 	std::cout << "Default Constructor called !" << std::endl;
 }
@@ -25,7 +25,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 		_EnergyPoints = other._EnergyPoints;
 		_AttackDamage = other._AttackDamage;
 	}
-		return (*this);
+	return (*this);
 }
 
 std::string ClapTrap::getName(void) const { return (this->_Name); }

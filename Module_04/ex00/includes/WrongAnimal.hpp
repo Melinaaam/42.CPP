@@ -1,18 +1,19 @@
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef WRONG_ANIMAL_HPP
+#define WRONG_ANIMAL_HPP
+
 #include<string>
 #include<iostream>
 
-class Animal
+class WrongAnimal
 {
 protected:
     std::string _type;
 public:
-    Animal(void);
-    Animal(std::string newType);
-	Animal(const Animal& copy);
-	Animal& operator=(const Animal& other);
-	virtual ~Animal(void);
+    WrongAnimal(void);
+    WrongAnimal(std::string newType);
+	WrongAnimal(const WrongAnimal& copy);
+	WrongAnimal& operator=(const WrongAnimal& other);
+	virtual ~WrongAnimal(void);
 
     std::string getType() const;
     virtual void makeSound() const; //virtual rends l'appel a la fonction dynamique, 

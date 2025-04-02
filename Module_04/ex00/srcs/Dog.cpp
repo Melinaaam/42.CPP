@@ -2,30 +2,32 @@
 
 Dog::Dog()
 {
-    std::cout << "Dog default constructor called !" << std::endl;
+    _type = "Dog";
+    std::cout << _type << " default constructor called !" << std::endl;
 }
-Dog::Dog(std::string name)
+Dog::Dog(std::string Type)
 {
-    name = "Dog";
-    std::cout << "Dog constructor called !" << std::endl;
+    std::cout << _type << " constructor called !" << std::endl;
+    *this = Type;
 }
 Dog::Dog(const Dog& copy)
 {
     (void)copy;
-    std::cout << "Dog copy constructor called !" << std::endl;
+    std::cout << _type << " copy constructor called !" << std::endl;
 }
 Dog& Dog::operator=(const Dog& other)
 {
-    (void)other;
+    if(this != &other)
+        _type = other._type;
     return *this;
 }
 
 Dog::~Dog(void)
 {
-    std::cout << "Dog detructor called !" << std::endl;
+    std::cout << _type << " detructor called !" << std::endl;
 }
 
-void Dog::makeSound()
+void Dog::makeSound() const
 {
     std::cout << "Waf Waf" << std::endl;
 }

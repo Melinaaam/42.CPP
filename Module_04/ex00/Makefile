@@ -10,7 +10,9 @@ OBJDIR = objets
 SRCS_NAME = Animal.cpp \
 			main.cpp \
 			Cat.cpp \
-			Dog.cpp 
+			Dog.cpp \
+			WrongCat.cpp \
+			WrongAnimal.cpp
 OBJS_NAME = $(SRCS_NAME:.cpp=.o)
 
 SRCS        =    $(addprefix $(SRCDIR)/,$(SRCS_NAME))

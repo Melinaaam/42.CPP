@@ -2,17 +2,20 @@
 
 DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap()
 {
+    _Name = "";
     ClapTrap::_Name = _Name + "_clap_name";
-    this->_HitPoints = FragTrap::_HitPoints;
-    this->_EnergyPoints = ScavTrap::_EnergyPoints;
-    this->_AttackDamage = FragTrap::_AttackDamage;
-
+    _HitPoints = FragTrap::_HitPoints;
+    _EnergyPoints = ScavTrap::_EnergyPoints;
+    _AttackDamage = FragTrap::_AttackDamage;
     std::cout << "---DiamondTrap default constructor called for " << _Name << std::endl;
 }
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
+DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
 {
     _Name = name;
     std::cout << "---DiamondTrap constructor called for " << _Name << std::endl;
+    _HitPoints = FragTrap::_HitPoints;
+    _EnergyPoints = ScavTrap::_EnergyPoints;
+    _AttackDamage = FragTrap::_AttackDamage;
 }
 DiamondTrap::DiamondTrap(const DiamondTrap& copy) : ClapTrap(copy), ScavTrap(copy), FragTrap(copy)
 {
@@ -29,6 +32,8 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
     if (this != &other)
     {
         ClapTrap::operator=(other);
+        ScavTrap::operator=(other);
+        FragTrap::operator=(other);
         _Name = other._Name;
     }
     return *this;
@@ -36,6 +41,6 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 
 void DiamondTrap::whoAmI()
 {
-    std::cout << "_Name private of DiamondTrap: " << _Name << "&&" << std::endl;
-    std::cout << "_Name private of ClapTrap: " << ClapTrap::_Name << "&&" << std::endl;
+    std::cout << "Name private of DiamondTrap: " << _Name << std::endl;
+    std::cout << "Name private of ClapTrap: " << ClapTrap::_Name << std::endl;
 }

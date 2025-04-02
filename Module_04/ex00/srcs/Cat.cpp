@@ -2,30 +2,33 @@
 
 Cat::Cat()
 {
-    std::cout << "Cat default constructor called !" << std::endl;
+    _type = "Cat";
+    std::cout << _type << " default constructor called !" << std::endl;
 }
 Cat::Cat(std::string name)
 {
-    name = "Cat";
-    std::cout << "Cat constructor called !" << std::endl;
+    std::cout << _type << " constructor called !" << std::endl;
+    Animal::_type = name;
 }
+
 Cat::Cat(const Cat& copy)
 {
     (void)copy;
-    std::cout << "Cat copy constructor called !" << std::endl;
+    std::cout << _type << " copy constructor called !" << std::endl;
 }
 Cat& Cat::operator=(const Cat& other)
 {
-    (void)other;
+    if(this != &other)
+        _type = other._type;
     return *this;
 }
 
 Cat::~Cat(void)
 {
-    std::cout << "Cat detructor called !" << std::endl;
+    std::cout << _type << " detructor called !" << std::endl;
 }
 
-void Cat::makeSound()
+void Cat::makeSound() const
 {
-    std::cout << "Waf Waf" << std::endl;
+    std::cout << "Miaou Miaou" << std::endl;
 }
