@@ -1,22 +1,25 @@
 #include"Cat.hpp"
 
-Cat::Cat() : Animal()
+Cat::Cat() : AAnimal()
 {
     _type = "Cat";
 	_brain = new Brain();
     std::cout << _type << " default constructor called !" << std::endl;
 }
 
-Cat::Cat(const Cat& copy) : Animal(copy)
+Cat::Cat(const Cat& copy) : AAnimal(copy)
 {
     std::cout << _type << " copy constructor called !" << std::endl;
-	this->_brain = new Brain(*(copy._brain)); // Copie profonde : Une copie "superficielle" (ou shallow copy) copierait simplement le pointeur Brain*, ce qui signifierait que deux objets Dog pointeraient vers le même Brain. Si l'un des objets est détruit, il va supprimer le Brain, laissant l'autre objet avec un pointeur invalide
+	this->_brain = new Brain(*(copy._brain)); 
+	// Copie profonde : Une copie "superficielle" (ou shallow copy) copierait simplement le pointeur Brain*, 
+	//ce qui signifierait que deux objets Dog pointeraient vers le même Brain. Si l'un des objets est détruit, 
+	//il va supprimer le Brain, laissant l'autre objet avec un pointeur invalide
 }
 Cat& Cat::operator=(const Cat& other)
 {
     if(this != &other)
 	{
-		Animal::operator=(other);
+		AAnimal::operator=(other);
 		delete this->_brain;
         this->_brain = new Brain(*(other._brain));
 	}

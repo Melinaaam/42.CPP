@@ -11,46 +11,48 @@
 
 int main()
 {
-    const int n = 10;
+    const int n = 200;
     Animal* animals[n];
 
-    std::cout << "\033[38;5;32mCreation of animals 🐾 :\033[0m" << std::endl;
+    std::cout << CYAN << "      Creation of animals 🐾 :" << RESET << std::endl;
     for (int i = 0; i < n / 2; ++i)
         animals[i] = new Dog();
     for (int i = n / 2; i < n; ++i)
         animals[i] = new Cat();
 
-    std::cout << "\033[38;5;220mTypes and sounds of animals 🐾📢:\033[0m" << std::endl;
+    std::cout << YELLOW << "        Types and sounds of animals 🐾📢:" << RESET << std::endl;
     for (int i = 0; i < n; ++i)
     {
         std::cout << "Animal " << i << " is a " << animals[i]->getType() << " and he goes : ";
         animals[i]->makeSound();
     }
 
-    std::cout << "\033[38;5;32mRemoval of animals 🗑️:\033[0m" << std::endl;
+    std::cout << std::endl << GREEN << "     Removal of animals 🗑️:" << RESET << std::endl;
     for (int i = 0; i < n; ++i)
         delete animals[i];
 
-    std::cout << "\033[38;5;32mDeep copy tests 🧐:\033[0m" << std::endl;
+    std::cout <<  std::endl << CYAN << BOLD << "    Deep copy tests 🧐:" << RESET << std::endl;
     Dog* originalDog = new Dog();
     Dog* copiedDog = new Dog(*originalDog);
 
-    std::cout << "Original Dog : ";
+    std::cout << std::endl << YELLOW << "Original Dog :" << RESET << " is a " << originalDog->getType() << " and he goes : ";
     originalDog->makeSound();
-    std::cout << "Copied Dog : ";
+    std::cout << YELLOW << "Copied Dog :" << RESET << " is a " << originalDog->getType() << " and he goes : ";
     copiedDog->makeSound();
 
+    std::cout << std::endl << GREEN << "     Removal of animals 🗑️:" << RESET << std::endl;
     delete originalDog;
     delete copiedDog;
 
     Cat* originalCat = new Cat();
     Cat* copiedCat = new Cat(*originalCat);
 
-    std::cout << "Original Cat : ";
+    std::cout << std::endl << YELLOW << "Original Cat :" << RESET << " is a " << originalDog->getType() << " and he goes : ";
     originalCat->makeSound();
-    std::cout << "Copied Cat : ";
+    std::cout << YELLOW << "Copied Cat :" << RESET << " is a " << originalDog->getType() << " and he goes : ";
     copiedCat->makeSound();
 
+    std::cout << std::endl << GREEN << "     Removal of animals 🗑️:" << RESET << std::endl;
     delete originalCat;
     delete copiedCat;
 

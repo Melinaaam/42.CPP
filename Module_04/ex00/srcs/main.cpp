@@ -19,65 +19,65 @@ int main()
     delete i;
     delete j;
     //....
-    std::cout << "" << std::endl << "\033[38;5;213m\033[1mMY TESTS :\033[0m" << std::endl;
-    std::cout << "\033[38;5;32mCat && Dog initialised by Cat && Dog :\033[0m" << std::endl;
+    std::cout << "" << std::endl << PINK << "MY TESTS : " << RESET << std::endl;
+    std::cout << CYAN << "Cat && Dog initialised by Cat && Dog : " << RESET << std::endl;
     const Animal* MyAnimal = new Animal;
     const Cat* MyCat = new Cat;
     const Dog* MyDog = new Dog;
 
     std::cout << std::endl;
-    std::cout << "\033[38;5;220mMyAnimal is a: \033[0m" << MyAnimal->getType() << " and it make : ";
+    std::cout << YELLOW << "MyAnimal is a: " << RESET << MyAnimal->getType() << " and he goes : ";
     MyAnimal->makeSound();
 
-    std::cout << "\033[38;5;220mMyCat is a: \033[0m" << MyCat->getType() << " and it make : ";
+    std::cout << YELLOW << "MyCat is a: " << RESET << MyCat->getType() << " and he goes : ";
     MyCat->makeSound();
 
-    std::cout << "\033[38;5;220mMyDog is a: \033[0m" << MyDog->getType() << " and it make : ";
+    std::cout << YELLOW << "mMyDog is a: " << RESET << MyDog->getType() << " and he goes : ";
     MyDog->makeSound();
 
-    std::cout << std::endl << "\033[38;5;32mInstances delete  :\033[0m" << std::endl;
+    std::cout << std::endl << CYAN << "Instances delete  : " << RESET << std::endl;
     delete MyAnimal;
     delete MyCat;
     delete MyDog;
 
-    std::cout << std::endl << "\033[38;5;32mCat && Dog initialised by Animal :\033[0m" << std::endl;
-    const Animal* AAnimal = new Animal;
-    const Animal* ACat = new Cat;
-    const Animal* ADog = new Dog;
+    std::cout << std::endl << CYAN << "Cat && Dog initialised by Animal : " << RESET << std::endl;
+    const Animal* AnimAnimal = new Animal;
+    const Animal* AnimCat = new Cat;
+    const Animal* AnimADog = new Dog;
 
 
-    std::cout << std::endl << "\033[38;5;220mAAnimal is a: \033[0m" << AAnimal->getType() << " and it make : ";
-    AAnimal->makeSound();
+    std::cout << std::endl << YELLOW << "AnimAnimal is a: " << RESET << AnimAnimal->getType() << " and he goes : ";
+    AnimAnimal->makeSound();
 
-    std::cout << "\033[38;5;220mACat is a: \033[0m" << ACat->getType() << " and it make : ";
-    ACat->makeSound();
+    std::cout << YELLOW << "AnimCat is a: " << RESET << AnimCat->getType() << " and he goes : ";
+    AnimCat->makeSound();
 
-    std::cout << "\033[38;5;220mADog is a: \033[0m" << ADog->getType() << " and it make : ";
-    ADog->makeSound();
+    std::cout << YELLOW << "AnimADog is a: " << RESET << AnimADog->getType() << " and he goes : ";
+    AnimADog->makeSound();
 
-    std::cout << std::endl << "\033[38;5;32mInstances delete  :\033[0m" << std::endl;
-    delete AAnimal;
-    delete ACat;
-    delete ADog;
+    std::cout << std::endl << CYAN << "Instances delete  : "<< RESET << std::endl;
+    delete AnimAnimal;
+    delete AnimCat;
+    delete AnimADog;
 
-    std::cout << std::endl << "\033[38;5;32mWrong Animals initialised :\033[0m" << std::endl;
+    std::cout << std::endl << CYAN << "Wrong Animals initialised : " << RESET << std::endl;
     const WrongAnimal* MyWrongAnimal = new WrongAnimal;
     const WrongCat* MyWrongCat = new WrongCat;
 
-    std::cout << std::endl << "\033[38;5;220mMyWrongAnimal is a: \033[0m" << MyWrongAnimal->getType() << " and it make : ";
+    std::cout << std::endl << YELLOW << "MyWrongAnimal is a: " << RESET << MyWrongAnimal->getType() << " and he goes : ";
     MyWrongAnimal->makeSound();
 
-    std::cout << "\033[38;5;220mMyWrongCat is a: \033[0m" << MyWrongCat->getType() << " and it make : ";
+    std::cout << YELLOW << "WrongCat is a: " << RESET << MyWrongCat->getType() << " and he goes : ";
     MyWrongCat->makeSound();
 
-	std::cout << std::endl << "\033[38;5;32mWrong Cat initialised as WrongAnimal :\033[0m" << std::endl;
+	std::cout << std::endl << CYAN << "Wrong Cat initialised as WrongAnimal :" << RESET << std::endl;
 	const WrongAnimal* WrongCatAsAnimal = new WrongCat;
-	std::cout << "\033[38;5;220mWrongCatAsAnimal is a: \033[0m" << WrongCatAsAnimal->getType() << " and it make : ";
-	WrongCatAsAnimal->makeSound();  // Ceci devrait appeler la méthode de WrongAnimal, pas de WrongCat
-	std::cout << std::endl << "\033[38;5;32mInstance delete :\033[0m" << std::endl;
-	delete WrongCatAsAnimal;
 
-    std::cout << std::endl << "\033[38;5;32mInstances delete  :\033[0m" << std::endl;
+	std::cout << YELLOW << " ***WrongCatAsAnimal*** is a: " << RESET << WrongCatAsAnimal->getType() << " and he goes : ";
+	WrongCatAsAnimal->makeSound();  //devrait appeler la méthode de WrongAnimal, pas de WrongCat
+
+	std::cout << std::endl << CYAN << "Instance delete :" << RESET << std::endl;
+	delete WrongCatAsAnimal;
     delete MyWrongAnimal;
     delete MyWrongCat;
 
