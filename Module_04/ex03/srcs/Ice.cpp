@@ -1,8 +1,7 @@
 #include"Ice.hpp"
 
-Ice::Ice(void) : AMateria()
+Ice::Ice(void) : AMateria("ice")
 {
-    _type = "ice";
     std::cout << MAGENTA << _type << " default constructor called !" << RESET << std::endl;
 }
 
@@ -13,7 +12,9 @@ Ice::Ice(const Ice& copy): AMateria(copy)
 
 Ice& Ice::operator=(const Ice& other)
 {
-std::cout << MAGENTA << _type << " default constructor called !" << RESET << std::endl;
+	if (this != &other)
+		AMateria::operator=(other);
+	return *this;
 }
 
 Ice::~Ice(void)
@@ -23,11 +24,11 @@ Ice::~Ice(void)
 
 AMateria* Ice::clone() const
 {
-
+	return new Ice(*this);
 }
 
 void Ice::use(ICharacter& target)
 {
-    std::cout << MAGENTA << "* shoots an ice bolt at " << RESET << "<name>" << std::endl;
+	std::cout << MAGENTA << "* shoots an ice bolt at " << RESET << target.getName() << std::endl;
     //<name> est le nom du Character (personnage) passé en paramètre.
 }

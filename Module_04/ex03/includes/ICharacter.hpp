@@ -2,8 +2,10 @@
 #define I_CHARACTER_HPP
 #include<string>
 #include<iostream>
-
 #include"AMateria.hpp"
+
+// Déclaration anticipée pour éviter la dépendance circulaire
+class AMateria;
 
 // Créez la classe concrète Character
 class ICharacter

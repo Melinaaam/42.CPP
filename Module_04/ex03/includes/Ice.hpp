@@ -5,6 +5,7 @@
 
 class Ice : public AMateria
 {
+public:
 	Ice(void);
 	Ice(const Ice& copy);
 	Ice& operator=(const Ice& other);

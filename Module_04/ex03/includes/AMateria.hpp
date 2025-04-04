@@ -1,9 +1,10 @@
-#ifndef AM_ATERIA_HPP
-#define AM_ATERIA_HPP
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
 #include<string>
 #include<iostream>
-
 #include"ICharacter.hpp"
+
+class ICharacter;  // Forward declaration
 class AMateria
 {
 protected:

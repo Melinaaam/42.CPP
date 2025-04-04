@@ -7,7 +7,12 @@ INCLUDES = -Iincludes
 SRCDIR = srcs
 OBJDIR = objets
 
-SRCS_NAME = main.cpp
+SRCS_NAME = main.cpp \
+			AMateria.cpp \
+			Character.cpp \
+			Cure.cpp \
+			Ice.cpp \
+			MateriaSource.cpp
 OBJS_NAME = $(SRCS_NAME:.cpp=.o)
 
 SRCS        =    $(addprefix $(SRCDIR)/,$(SRCS_NAME))
