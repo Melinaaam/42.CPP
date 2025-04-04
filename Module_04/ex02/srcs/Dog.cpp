@@ -29,3 +29,9 @@ Dog::~Dog(void)
 	delete _brain;
 }
 void Dog::makeSound() const{std::cout << "🐶 Waf Waf 🐶" << std::endl;}
+
+void Dog::getIdeas(int index, int nbIdeasDisplay) const
+{
+	std::cout << "Dog's ideas : " << std::endl;
+	_brain->getIdeas(index, nbIdeasDisplay);
+}

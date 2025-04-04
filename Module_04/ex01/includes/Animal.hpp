@@ -15,10 +15,10 @@ public:
 
     std::string getType() const;
     virtual void makeSound() const; //virtual rends l'appel a la fonction dynamique,
-                                //le compilateur va chercher le "vrai" type pour afficher le bon message
-                                //on appel ce type de fonction : methode
+                                    //le compilateur va chercher le "vrai" type pour afficher le bon message
+                                    //on appel ce type de fonction : methode
 };
-
+/*COLORS*/
 #define BLACK   "\033[0;30m"
 #define RED     "\033[0;31m"
 #define GREEN   "\033[32m"

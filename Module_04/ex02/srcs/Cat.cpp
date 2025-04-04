@@ -33,3 +33,9 @@ Cat::~Cat(void)
 }
 
 void Cat::makeSound() const{std::cout << "🐈 Miaou Miaou 🐈" << std::endl;}
+
+void Cat::getIdeas(int index, int nbIdeasDisplay) const
+{
+	std::cout << "Cat's ideas : " << std::endl;
+	_brain->getIdeas(index, nbIdeasDisplay);
+}

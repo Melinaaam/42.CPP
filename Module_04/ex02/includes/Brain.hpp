@@ -13,6 +13,8 @@ public:
     Brain(const Brain& copy);
 	Brain & operator=(const Brain& other);
     ~Brain();
+
+    void getIdeas(int index, int nbIdeasDisplay) const;
 };
 
 #endif

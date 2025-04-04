@@ -26,3 +26,13 @@ Brain::~Brain()
 	std::cout << "Brain detructor called !" << std::endl;
 }
 
+void Brain::getIdeas(int index, int nbIdeasDisplay) const
+{
+	if (index < 0 || index >= 100 || index + nbIdeasDisplay > 100)
+	{
+		std::cout << "Invalid index range for Brain ideas." << std::endl;
+		return;
+	}
+	for (int i(0); i < nbIdeasDisplay; i++)
+		std::cout << _ideas[index + i] << index + i << " " << std::endl;
+}

@@ -14,6 +14,7 @@ public:
 	virtual ~Cat(void);
 
 	void makeSound() const;
+	void getIdeas(int index, int nbIdeasDisplay) const;
 };
 
 #endif

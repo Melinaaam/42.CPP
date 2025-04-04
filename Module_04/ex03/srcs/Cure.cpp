@@ -2,12 +2,12 @@
 
 Cure::Cure(void): AMateria("cure")
 {
-    std::cout << MAGENTA << _type << " default constructor called !" << RESET << std::endl;
+    // std::cout << MAGENTA << _type << " default constructor called !" << RESET << std::endl;
 }
 
 Cure::Cure(const Cure& copy): AMateria(copy)
 {
-    std::cout << MAGENTA << _type << " copy constructor called !" << RESET << std::endl;
+    // std::cout << MAGENTA1 << _type << " copy constructor called !" << RESET << std::endl;
 }
 
 Cure& Cure::operator=(const Cure& other)
@@ -19,7 +19,7 @@ Cure& Cure::operator=(const Cure& other)
 
 Cure::~Cure(void)
 {
-    std::cout << MAGENTA << _type << " destructor called !" << RESET << std::endl;
+    // std::cout << MAGENTA1 << _type << " destructor called !" << RESET << std::endl;
 }
 
 AMateria* Cure::clone() const
@@ -30,5 +30,4 @@ AMateria* Cure::clone() const
 void Cure::use(ICharacter& target)
 {
     std::cout << MAGENTA << "* heals " << RESET << target.getName() << "’s wounds *" << std::endl;
-    //<name> est le nom du Character (personnage) passé en paramètre.
 }

@@ -14,6 +14,7 @@ public:
     ~Dog(void);
 
 	void makeSound() const;
+	void getIdeas(int index, int nbIdeasDisplay) const;
 };
 
 #endif

@@ -6,7 +6,6 @@
 #include"IMateriaSource.hpp"
 #include"MateriaSource.hpp"
 
-
 /*
 class purement abstraites sont communément appelées des interfaces.
 class abstraites : au moins une fonction virtual definie/ NE PEUT ETRE INSTANCIEE
@@ -32,11 +31,9 @@ class concretes : PEUT ETRE INSTANCIEE et dont toutes les methodes sont definies
 //     return 0;
 // }
 
-
-
 int main()
 {
-    std::cout << CYAN << "=== Materia Source Creation and Learning ===" << RESET << std::endl;
+    // std::cout << CYAN << "=== Materia Source Creation and Learning ===" << RESET << std::endl;
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
@@ -44,7 +41,7 @@ int main()
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
 
-    std::cout << std::endl << YELLOW << "=== Character Creation ===" << RESET << std::endl;
+    // std::cout << std::endl << YELLOW << "=== Character Creation ===" << RESET << std::endl;
     ICharacter* me = new Character("me");
     ICharacter* bob = new Character("bob");
 
@@ -72,27 +69,59 @@ int main()
     std::cout << std::endl << GREEN << "=== Unequipping Materia ===" << RESET << std::endl;
     // Déséquipe la Materia à l'index 1 (ne la delete pas, elle reste "au sol")
     me->unequip(1);
+    // me->use(1, *me);
     // Tente d'utiliser à nouveau la slot déséquipée : rien ne doit se passer
     me->use(1, *bob);
 
     std::cout << std::endl << CYAN << "=== Deep Copy Test ===" << RESET << std::endl;
-    // Test de copie profonde du personnage "me"
-    Character* original = dynamic_cast<Character*>(me);
-    Character* copy = new Character(*original);
-
-    std::cout << YELLOW << "Original character '" << original->getName() << "' uses materias:" << RESET << std::endl;
-    for (int i = 0; i < 4; i++)
+    if (dynamic_cast<Character*>(me)) //protege le cast si il est != (ex si me n'est pas un charactere, dynamic cast renvoi null)
+    { 
+        Character* original = dynamic_cast<Character*>(me);
+        Character* copy = new Character(*original);
+        
+        std::cout << YELLOW << "Original character '" << original->getName() << "' uses materias:" << RESET << std::endl;
+        for (int i = 0; i < 4; i++)
         original->use(i, *bob);
-
-    std::cout << YELLOW << "Copied character '" << copy->getName() << "' uses materias:" << RESET << std::endl;
-    for (int i = 0; i < 4; i++)
+        
+        std::cout << YELLOW << "Copied character '" << copy->getName() << "' uses materias:" << RESET << std::endl;
+        for (int i = 0; i < 4; i++)
         copy->use(i, *bob);
-
-    std::cout << std::endl << GREEN << "=== Cleaning Up ===" << RESET << std::endl;
-    delete bob;
+        std::cout << std::endl << GREEN << "=== Cleaning Up ===" << RESET << std::endl;
+        delete copy;
+    }
+    // delete bob;
     delete me;
-    delete copy;
     delete src;
 
+    IMateriaSource* srcM = new MateriaSource();
+    if (dynamic_cast<MateriaSource*>(srcM)) {
+        MateriaSource* originalM = dynamic_cast<MateriaSource*>(srcM);
+        MateriaSource* copyM = new MateriaSource(*originalM);
+        ICharacter* meM = new Character("meM");
+        std::cout << std::endl;
+        
+        AMateria* tmpM;
+        originalM->learnMateria(new Ice());
+        std::cout << std::endl;
+        
+        tmpM = originalM->createMateria("ice");
+        std::cout << std::endl;
+        
+        meM->equip(tmpM);
+        std::cout << std::endl;
+        
+        originalM->learnMateria(new Cure());
+        tmpM = originalM->createMateria("cure");
+        meM->equip(tmpM);
+        meM->use(0, *bob);
+        meM->use(1, *bob);
+        meM->use(2, *bob);
+        delete copyM;
+        delete meM;
+    }
+    delete srcM;
+    delete bob;
+    
+    std::cout << std::endl;
     return 0;
 }

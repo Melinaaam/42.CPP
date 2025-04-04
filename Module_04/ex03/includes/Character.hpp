@@ -21,5 +21,5 @@ public:
     void unequip(int idx);
     void use(int idx, ICharacter& target);
 };
-
+std::ostream &operator<<(std::ostream &out, const Character &Character);
 #endif
