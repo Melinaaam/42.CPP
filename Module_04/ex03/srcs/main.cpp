@@ -133,6 +133,7 @@ int main()
 	delete me;
 	delete meCopy;
 	delete src;
+	delete nobody;
 
 	return 0;
 }
