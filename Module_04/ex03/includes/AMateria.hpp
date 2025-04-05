@@ -4,7 +4,9 @@
 #include<iostream>
 #include"ICharacter.hpp"
 
-class ICharacter;  // Forward declaration
+class ICharacter;  // déclaration anticipée permet de reduire le temps de compilation
+					// pour éviter la dépendance circulaire: 2 fichiers ou modules s'incluent mutuellement,direct ou indirectmt.
+					//Ex: si A.hpp inclut B.hpp et que B.hpp inclut à son tour A.hpp ->boucle infinie d'inclusions.
 class AMateria
 {
 protected:
@@ -16,7 +18,7 @@ public:
 	AMateria& operator=(const AMateria& other);
 	virtual ~AMateria(void);
 
-	std::string const & getType() const; //Returns the materia type
+	std::string const & getType() const;
 	virtual AMateria* clone() const = 0;
 	virtual void use(ICharacter& target);
 };

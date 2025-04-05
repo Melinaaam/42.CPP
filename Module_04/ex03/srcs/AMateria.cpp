@@ -2,8 +2,7 @@
 
 AMateria::AMateria(void)
 {
-    // std::cout << MAGENTA << "AMateria default constructor called !" << RESET << std::endl;
-
+	// std::cout << MAGENTA << "AMateria default constructor called !" << RESET << std::endl;
 }
 AMateria::AMateria(std::string const & type) : _type(type)
 {
@@ -11,7 +10,7 @@ AMateria::AMateria(std::string const & type) : _type(type)
 }
 AMateria::AMateria(const AMateria& copy) : _type(copy._type)
 {
-    // std::cout << MAGENTA1 << "AMateria copy constructor called !" << RESET << std::endl;
+	// std::cout << MAGENTA1 << "AMateria copy constructor called !" << RESET << std::endl;
 }
 AMateria& AMateria::operator=(const AMateria& other)
 {
@@ -22,13 +21,10 @@ AMateria& AMateria::operator=(const AMateria& other)
 
 AMateria::~AMateria(void)
 {
-    // std::cout << MAGENTA2 << "AMateria deconstructor called !" << RESET << std::endl;
+	// std::cout << MAGENTA2 << "AMateria deconstructor called !" << RESET << std::endl;
 }
 
-std::string const & AMateria::getType() const //Returns the materia type
-{
-	return _type;
-}
+std::string const & AMateria::getType() const {return _type;}
 
 void AMateria::use(ICharacter& target)
 {

@@ -4,18 +4,15 @@
 #include<iostream>
 #include"AMateria.hpp"
 
-// Déclaration anticipée pour éviter la dépendance circulaire
 class AMateria;
-
-// Créez la classe concrète Character
 class ICharacter
 {
 public:
-    virtual ~ICharacter() {}
-    virtual std::string const & getName() const = 0;
-    virtual void equip(AMateria* m) = 0;
-    virtual void unequip(int idx) = 0;
-    virtual void use(int idx, ICharacter& target) = 0;
+	virtual ~ICharacter() {}
+	virtual std::string const & getName() const = 0;
+	virtual void equip(AMateria* m) = 0;
+	virtual void unequip(int idx) = 0;
+	virtual void use(int idx, ICharacter& target) = 0;
 };
 
 #endif

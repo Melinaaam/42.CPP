@@ -33,95 +33,106 @@ class concretes : PEUT ETRE INSTANCIEE et dont toutes les methodes sont definies
 
 int main()
 {
-    // std::cout << CYAN << "=== Materia Source Creation and Learning ===" << RESET << std::endl;
-    IMateriaSource* src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    // Tentative d'ajouter une troisième Materia (l'inventaire ne doit contenir que 4 modèles maximum)
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
+	std::cout << CYAN << "=== Creation and learn of Materia source ===" << RESET << std::endl;
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 
-    // std::cout << std::endl << YELLOW << "=== Character Creation ===" << RESET << std::endl;
-    ICharacter* me = new Character("me");
-    ICharacter* bob = new Character("bob");
+	dynamic_cast<MateriaSource*>(src)->displayInventory();
 
-    std::cout << std::endl << CYAN << "=== Equipping Materias to 'me' ===" << RESET << std::endl;
-    AMateria* tmp;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    // Ajoutons deux autres pour tester la limite de l'inventaire
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    // Tentative d'équiper une cinquième Materia : cela ne devrait rien faire
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
+	std::cout << std::endl << CYAN << "=== Creation of characters ===" << RESET << std::endl;
+	ICharacter* me = new Character("me");
+	ICharacter* bob = new Character("bob");
+	ICharacter* nobody = new Character("nobody");
 
-    std::cout << std::endl << YELLOW << "=== Testing use() of Materias on 'bob' ===" << RESET << std::endl;
-    for (int i = 0; i < 4; i++)
-        me->use(i, *bob);
-    // Test d'utilisation avec un index invalide (aucune action attendue)
-    me->use(4, *bob);
+	std::cout << YELLOW << "Equipping the character 'me' with Ice and Cure Materia for slot 0 & 1:" << RESET << std::endl;
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	dynamic_cast<Character*>(me)->displayInventory();
 
-    std::cout << std::endl << GREEN << "=== Unequipping Materia ===" << RESET << std::endl;
-    // Déséquipe la Materia à l'index 1 (ne la delete pas, elle reste "au sol")
-    me->unequip(1);
-    // me->use(1, *me);
-    // Tente d'utiliser à nouveau la slot déséquipée : rien ne doit se passer
-    me->use(1, *bob);
+	std::cout << YELLOW << "Equipping the character 'bob' with Ice and Cure Materia for slot 0 to 4:" << RESET << std::endl;
+	AMateria* bobtmp;
+	bobtmp = src->createMateria("ice");
+	bob->equip(bobtmp);
 
-    std::cout << std::endl << CYAN << "=== Deep Copy Test ===" << RESET << std::endl;
-    if (dynamic_cast<Character*>(me)) //protege le cast si il est != (ex si me n'est pas un charactere, dynamic cast renvoi null)
-    { 
-        Character* original = dynamic_cast<Character*>(me);
-        Character* copy = new Character(*original);
-        
-        std::cout << YELLOW << "Original character '" << original->getName() << "' uses materias:" << RESET << std::endl;
-        for (int i = 0; i < 4; i++)
-        original->use(i, *bob);
-        
-        std::cout << YELLOW << "Copied character '" << copy->getName() << "' uses materias:" << RESET << std::endl;
-        for (int i = 0; i < 4; i++)
-        copy->use(i, *bob);
-        std::cout << std::endl << GREEN << "=== Cleaning Up ===" << RESET << std::endl;
-        delete copy;
-    }
-    // delete bob;
-    delete me;
-    delete src;
+	bobtmp = src->createMateria("cure");
+	bob->equip(bobtmp);
 
-    IMateriaSource* srcM = new MateriaSource();
-    if (dynamic_cast<MateriaSource*>(srcM)) {
-        MateriaSource* originalM = dynamic_cast<MateriaSource*>(srcM);
-        MateriaSource* copyM = new MateriaSource(*originalM);
-        ICharacter* meM = new Character("meM");
-        std::cout << std::endl;
-        
-        AMateria* tmpM;
-        originalM->learnMateria(new Ice());
-        std::cout << std::endl;
-        
-        tmpM = originalM->createMateria("ice");
-        std::cout << std::endl;
-        
-        meM->equip(tmpM);
-        std::cout << std::endl;
-        
-        originalM->learnMateria(new Cure());
-        tmpM = originalM->createMateria("cure");
-        meM->equip(tmpM);
-        meM->use(0, *bob);
-        meM->use(1, *bob);
-        meM->use(2, *bob);
-        delete copyM;
-        delete meM;
-    }
-    delete srcM;
-    delete bob;
-    
-    std::cout << std::endl;
-    return 0;
+	bobtmp = src->createMateria("ice");
+	bob->equip(bobtmp);
+
+	bobtmp = src->createMateria("cure");
+	bob->equip(bobtmp);
+	dynamic_cast<Character*>(bob)->displayInventory();
+
+	dynamic_cast<Character*>(nobody)->displayInventory();
+
+	std::cout << std::endl << GREEN << "Using 'me' Materias on 'bob':" << RESET << std::endl;
+	me->use(0, *bob); // Doit afficher : * shoots an ice bolt at bob *
+	me->use(1, *bob); // Doit afficher : * heals bob's wounds *
+	me->use(2, *bob); // Doit afficher slot vide
+
+	std::cout << std::endl << GREEN << "Using 'bob' Materias on 'me':" << RESET << std::endl;
+	bob->use(0, *me);
+	bob->use(1, *me);
+	bob->use(2, *me);
+	bob->use(3, *me);
+
+	nobody->use(0, *me); //doit afficher slot 0 vide
+
+	//dynamic cast : convertit en secu un ptr ou ref d'une classe de base vers une classe dérivée.
+	//il check au moment de l'exécution si l'objet pointé est réellement du type vers lequel tu souhaites le convertir.
+	//si cast pas possible il retourne null pr eviter erreurs
+
+	std::cout << std::endl << GREEN << "===Dynamic cast & deep copy check====" << RESET << std::endl;
+
+	IMateriaSource* srcM = new MateriaSource();
+
+	if (dynamic_cast<MateriaSource*>(srcM)) //si convert ok, on pt utiliser fonctionnalites de MateriaSource
+	{
+		std::cout << std::endl << CYAN << "=== Cast and Creation of one character ===" << RESET << std::endl;
+		MateriaSource* originalM = dynamic_cast<MateriaSource*>(srcM);
+		MateriaSource* copyM = new MateriaSource(*originalM);
+		ICharacter* meM = new Character("meM");
+
+		std::cout << std::endl << CYAN << "=== Creation and learn of Materia source ===" << RESET << std::endl;
+
+		AMateria* tmpM;
+		originalM->learnMateria(new Ice());
+		tmpM = originalM->createMateria("ice");
+		meM->equip(tmpM);
+		originalM->learnMateria(new Cure());
+		tmpM = originalM->createMateria("cure");
+
+		std::cout << YELLOW << "Equipping the character 'meM':" << RESET << std::endl;
+		meM->equip(tmpM);
+		std::cout << std::endl << GREEN << "Using 'meM' Materias on 'bob':" << RESET << std::endl;
+		meM->use(0, *bob);
+		meM->use(1, *bob);
+		meM->use(2, *bob);
+		delete copyM;
+		delete meM;
+	}
+	else{std::cout << "srcM isn't a instance of MateriaSource" << std::endl;}//srcM n'est pas une instance de MateriaSource.
+	delete srcM;
+
+	std::cout << std::endl << CYAN << "=== Deep copy test of 'me' ===" << RESET << std::endl;
+	Character* meCopy = new Character(*(dynamic_cast<Character*>(me)));
+
+	std::cout << YELLOW << "Inventory of the original character 'me':" << RESET << std::endl;
+	dynamic_cast<Character*>(me)->displayInventory();
+
+	std::cout << YELLOW << "Inventory of the copied character 'meCopy':" << RESET << std::endl;
+	meCopy->displayInventory();
+
+	std::cout << std::endl << GREEN << "Cleaning up created objects..." << RESET << std::endl;
+	delete bob;
+	delete me;
+	delete meCopy;
+	delete src;
+
+	return 0;
 }
