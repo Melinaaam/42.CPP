@@ -1,5 +1,5 @@
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef AANIMAL_HPP
+#define AANIMAL_HPP
 #include<string>
 #include<iostream>
 /*La class Animal est maintenant abstraite car makesound est defini  0

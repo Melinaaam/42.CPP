@@ -12,5 +12,4 @@ public:
     virtual ~WrongCat(void);
 };
 
-
 #endif

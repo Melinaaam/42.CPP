@@ -78,11 +78,11 @@ void MateriaSource::displayInventory() const
 	}
 
 	if (empty) {
-		std::cout << "The inventory " << " is empty." << std::endl;
+		std::cout << RED << "The inventory " << " is empty." << RESET << std::endl;
 	} else {
-		std::cout << "Inventory of MateriaSource :" << std::endl;
+		std::cout << BOLD << "Inventory of MateriaSource :" << RESET << std::endl;
 		for (int i = 0; i < 4; ++i) {
-			std::cout << "Slot " << i << " : ";
+			std::cout << BOLD << "Slot " << RESET << i << " : ";
 			if (_inventory[i] != NULL)
 				std::cout << _inventory[i]->getType();
 			else

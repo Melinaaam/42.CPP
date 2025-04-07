@@ -7,7 +7,7 @@ INCLUDES = -Iincludes
 SRCDIR = srcs
 OBJDIR = objets
 
-SRCS_NAME = Animal.cpp \
+SRCS_NAME = AAnimal.cpp \
 			main.cpp \
 			Cat.cpp \
 			Dog.cpp \

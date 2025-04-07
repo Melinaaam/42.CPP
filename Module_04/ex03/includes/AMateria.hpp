@@ -37,5 +37,6 @@ public:
 #define BOLD    "\033[1m"
 #define RESET   "\033[0m"
 #define CLIGNOTE "\033[0;35;5m"
+#define UNDER_	"\x1b[4m"
 
 #endif

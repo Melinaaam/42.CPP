@@ -15,9 +15,7 @@ public:
     virtual ~Animal(void);
 
     std::string getType() const;
-    virtual void makeSound() const; //virtual rends l'appel a la fonction dynamique,
-                                    //le compilateur va chercher le "vrai" type pour afficher le bon message
-                                    //on appel ce type de fonction : methode
+    virtual void makeSound() const;
 };
 
 /*COLORS*/

@@ -14,6 +14,7 @@ public:
     virtual ~Dog(void);
 
     virtual void makeSound() const;
+    void getIdeas(int index, int nbIdeasDisplay) const;
 };
 
 #endif

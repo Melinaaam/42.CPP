@@ -95,7 +95,7 @@ void Character::displayInventory() const
 	if (empty) {
 		std::cout << "The inventory " << _name << RED << " is empty." << RESET << std::endl;
 	} else {
-		std::cout << std::endl << "Inventory of " << _name << " :" << std::endl;
+		std::cout << std::endl << "Inventory of " << YELLOW << "'" << _name << "'" << RESET << " :" << std::endl;
 		for (int i = 0; i < 4; ++i) {
 			std::cout << "Slot " << i << " : ";
 			if (_inventory[i] != NULL)

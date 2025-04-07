@@ -1,9 +1,8 @@
-#include"Animal.hpp"
+#include"AAnimal.hpp"
 #include"Cat.hpp"
 #include"Dog.hpp"
 #include"WrongAnimal.hpp"
 #include"WrongCat.hpp"
-#include"I
 
 /*
 Différence entre virtual et virtual pure
@@ -37,12 +36,12 @@ int main()
 	delete j;
 	delete i;
 	delete newCat;
-
+/*************************************************************************************************** */
     std::cout << std::endl << CYAN << "Creation of array's animals 🐾 :" << RESET << std::endl;
     std::cout << YELLOW << "Instances" << RESET << std::endl;
-	const int Aarray = 10; //
+	const int Aarray = 20; //
     AAnimal* animals[Aarray]; //creer un ptr d'animal OK
-    // Animal* animal = new Animal(); mais une instance d'animal
+    // AAnimal* aanimal = new Animal(); mais pas une instance d'animal
     
     std::cout<< YELLOW << "Size of animals's array is : " << RESET << Aarray << std::endl;
     std::cout << std::endl << YELLOW << "Types and sounds of animals 🐾📢:" << RESET << std::endl;
@@ -69,6 +68,8 @@ int main()
 	for (int i(0); i < Aarray; i++)
 		delete animals[i];
 
+    /*************************************************************************************************** */
+
     std::cout << std::endl << CYAN << "Deep copy tests 🧐:" << RESET << std::endl;
     std::cout << YELLOW << "Types and sounds of dogs📢:" << RESET << std::endl;
     Dog* originalDog = new Dog();
@@ -76,10 +77,11 @@ int main()
 
     std::cout << "Original Dog : ";
     originalDog->makeSound();
-    originalDog->getIdeas(5, 1);
+    originalDog->getIdeas(5, 5);
+
     std::cout << "Copied Dog : ";
     copiedDog->makeSound();
-    copiedDog->getIdeas(5, 1);
+    copiedDog->getIdeas(5, 5);
 
     std::cout << std::endl << GREEN << "Removal animals 🗑️:" << RESET << std::endl;
     delete originalDog;
@@ -92,15 +94,15 @@ int main()
     std::cout << "Original Cat : ";
     originalCat->makeSound();
     originalCat->getIdeas(5, 1);
+
     std::cout << "Copied Cat : ";
     copiedCat->makeSound();
-    copiedCat->getIdeas(5, 1);
+    copiedCat->getIdeas(1, 102);
 
     std::cout << std::endl << GREEN << "Removal of animals 🗑️:" << RESET << std::endl;
     delete originalCat;
     delete copiedCat;
 
-    std::cout << std::endl << "\033[38;5;45mInstances copies tests\033[0m" << std::endl;
     return 0;
 }
 

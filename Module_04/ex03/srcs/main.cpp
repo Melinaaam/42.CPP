@@ -33,27 +33,29 @@ class concretes : PEUT ETRE INSTANCIEE et dont toutes les methodes sont definies
 
 int main()
 {
-	std::cout << CYAN << "=== Creation and learn of Materia source ===" << RESET << std::endl;
+	std::cout << CYAN << "====== Creation and learn of Materia source ======" << RESET << std::endl;
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 
-	dynamic_cast<MateriaSource*>(src)->displayInventory();
+	if (dynamic_cast< MateriaSource*>(src))
+		dynamic_cast<MateriaSource*>(src)->displayInventory();
 
-	std::cout << std::endl << CYAN << "=== Creation of characters ===" << RESET << std::endl;
+	std::cout << std::endl << CYAN << "====== Creation of characters ======" << RESET << std::endl;
 	ICharacter* me = new Character("me");
 	ICharacter* bob = new Character("bob");
 	ICharacter* nobody = new Character("nobody");
 
-	std::cout << YELLOW << "Equipping the character 'me' with Ice and Cure Materia for slot 0 & 1:" << RESET << std::endl;
+	std::cout << "Equipping the character " << YELLOW << me->getName() << RESET << " with Ice and Cure Materia for slot 0 & 1:" << std::endl;
 	AMateria* tmp;
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
-	dynamic_cast<Character*>(me)->displayInventory();
+	if (dynamic_cast< Character*>(me))
+		dynamic_cast<Character*>(me)->displayInventory();
 
-	std::cout << YELLOW << "Equipping the character 'bob' with Ice and Cure Materia for slot 0 to 4:" << RESET << std::endl;
+	std::cout << "Equipping the character " << YELLOW << bob->getName() << RESET << " with Ice and Cure Materia for slot 0 to 4:" << std::endl;
 	AMateria* bobtmp;
 	bobtmp = src->createMateria("ice");
 	bob->equip(bobtmp);
@@ -66,39 +68,38 @@ int main()
 
 	bobtmp = src->createMateria("cure");
 	bob->equip(bobtmp);
-	dynamic_cast<Character*>(bob)->displayInventory();
+	if (dynamic_cast< Character*>(bob))
+		dynamic_cast<Character*>(bob)->displayInventory();
 
-	dynamic_cast<Character*>(nobody)->displayInventory();
+	std::cout << std::endl << "No equiping inventory of : " << YELLOW << nobody->getName() << RESET << std::endl;
+	if(dynamic_cast< Character*>(nobody))
+		dynamic_cast<Character*>(nobody)->displayInventory();
 
-	std::cout << std::endl << GREEN << "Using 'me' Materias on 'bob':" << RESET << std::endl;
+	std::cout << std::endl << GREEN << "Using " << RESET << YELLOW << me->getName() << RESET << GREEN << " Materias on " << YELLOW << bob->getName() << RESET << std::endl;
 	me->use(0, *bob); // Doit afficher : * shoots an ice bolt at bob *
 	me->use(1, *bob); // Doit afficher : * heals bob's wounds *
 	me->use(2, *bob); // Doit afficher slot vide
 
-	std::cout << std::endl << GREEN << "Using 'bob' Materias on 'me':" << RESET << std::endl;
+	std::cout << std::endl << GREEN << "Using " << RESET << YELLOW << bob->getName() << RESET << GREEN << " Materias on " << YELLOW << me->getName() << RESET << std::endl;
+
 	bob->use(0, *me);
 	bob->use(1, *me);
 	bob->use(2, *me);
 	bob->use(3, *me);
 
+	std::cout << std::endl << GREEN << "Using " << RESET << YELLOW << nobody->getName() << RESET << GREEN << " Materias on " << YELLOW << me->getName() << RESET << std::endl;
+
 	nobody->use(0, *me); //doit afficher slot 0 vide
 
-	//dynamic cast : convertit en secu un ptr ou ref d'une classe de base vers une classe dérivée.
-	//il check au moment de l'exécution si l'objet pointé est réellement du type vers lequel tu souhaites le convertir.
-	//si cast pas possible il retourne null pr eviter erreurs
-
-	std::cout << std::endl << GREEN << "===Dynamic cast & deep copy check====" << RESET << std::endl;
+	std::cout << std::endl << CYAN << "====== Dynamic cast & deep copy check ======" << RESET << std::endl;
 
 	IMateriaSource* srcM = new MateriaSource();
 
 	if (dynamic_cast<MateriaSource*>(srcM)) //si convert ok, on pt utiliser fonctionnalites de MateriaSource
 	{
-		std::cout << std::endl << CYAN << "=== Cast and Creation of one character ===" << RESET << std::endl;
 		MateriaSource* originalM = dynamic_cast<MateriaSource*>(srcM);
 		MateriaSource* copyM = new MateriaSource(*originalM);
 		ICharacter* meM = new Character("meM");
-
-		std::cout << std::endl << CYAN << "=== Creation and learn of Materia source ===" << RESET << std::endl;
 
 		AMateria* tmpM;
 		originalM->learnMateria(new Ice());
@@ -107,9 +108,9 @@ int main()
 		originalM->learnMateria(new Cure());
 		tmpM = originalM->createMateria("cure");
 
-		std::cout << YELLOW << "Equipping the character 'meM':" << RESET << std::endl;
+		std::cout << std::endl << YELLOW << "Equipping the character 'meM':" << RESET << std::endl;
 		meM->equip(tmpM);
-		std::cout << std::endl << GREEN << "Using 'meM' Materias on 'bob':" << RESET << std::endl;
+		std::cout << std::endl << GREEN << "Using " << RESET << YELLOW << meM->getName() << RESET << GREEN << " Materias on " << YELLOW << bob->getName() << RESET << std::endl;
 		meM->use(0, *bob);
 		meM->use(1, *bob);
 		meM->use(2, *bob);
@@ -120,18 +121,20 @@ int main()
 	delete srcM;
 
 	std::cout << std::endl << CYAN << "=== Deep copy test of 'me' ===" << RESET << std::endl;
-	Character* meCopy = new Character(*(dynamic_cast<Character*>(me)));
+	if (dynamic_cast< Character*>(me))
+	{
+		Character* meCopy = new Character(*(dynamic_cast<Character*>(me)));
+		std::cout << YELLOW << "Inventory of the original character 'me':" << RESET << std::endl;
+		dynamic_cast<Character*>(me)->displayInventory();
 
-	std::cout << YELLOW << "Inventory of the original character 'me':" << RESET << std::endl;
-	dynamic_cast<Character*>(me)->displayInventory();
-
-	std::cout << YELLOW << "Inventory of the copied character 'meCopy':" << RESET << std::endl;
-	meCopy->displayInventory();
-
+		std::cout << YELLOW << "Inventory of the copied character 'meCopy':" << RESET << std::endl;
+		meCopy->displayInventory();
+		delete meCopy;
+	}
+	else{std::cout << "me isn't a instance of Character" << std::endl;}//srcM n'est pas une instance de MateriaSource.
 	std::cout << std::endl << GREEN << "Cleaning up created objects..." << RESET << std::endl;
 	delete bob;
 	delete me;
-	delete meCopy;
 	delete src;
 	delete nobody;
 

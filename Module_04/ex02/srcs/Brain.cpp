@@ -1,4 +1,5 @@
 #include"Brain.hpp"
+#include"AAnimal.hpp"
 
 Brain::Brain(void)
 {
@@ -30,9 +31,9 @@ void Brain::getIdeas(int index, int nbIdeasDisplay) const
 {
 	if (index < 0 || index >= 100 || index + nbIdeasDisplay > 100)
 	{
-		std::cout << "Invalid index range for Brain ideas." << std::endl;
+		std::cout << RED << "Invalid index range for Brain ideas." << RESET << std::endl;
 		return;
 	}
 	for (int i(0); i < nbIdeasDisplay; i++)
-		std::cout << _ideas[index + i] << index + i << " " << std::endl;
+		std::cout << GREEN << _ideas[index + i] << index + i << " " << RESET << std::endl;
 }

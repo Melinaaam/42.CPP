@@ -18,7 +18,7 @@ int main()
     delete meta;
     delete i;
     delete j;
-    //....
+
     std::cout << "" << std::endl << PINK << "MY TESTS : " << RESET << std::endl;
     std::cout << CYAN << "Cat && Dog initialised by Cat && Dog : " << RESET << std::endl;
     const Animal* MyAnimal = new Animal;
