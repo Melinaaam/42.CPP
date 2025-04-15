@@ -5,37 +5,42 @@
 #include<string>
 #include<exception>
 
+
 class Bureaucrat 
 {
 private:
     std::string _name;
     int         _grade;
 public:
-    Bureaucrat(const std::string name);
+    Bureaucrat(const std::string name, int grade);
     Bureaucrat(const Bureaucrat& copy);
     Bureaucrat& operator=(const Bureaucrat& other);
     ~Bureaucrat();
 
+    Bureaucrat& operator++();
+    Bureaucrat& operator--();
+
     std::string getName() const;
     int getGrade() const;
 
-    // class radeTooHighException
-    // {
-    //     radeTooHighException& operator++();
-    //     radeTooHighException& operator--();
-    //     std::string getName() const;
-    //     int getGrade() const;
-    // };
+    class GradeTooHighException
+    {
+        virtual const char* what() const throw()
+        {
+            return "Errrrror hight";
+        }
+    };
 
-    // class radeTooLowException
-    // {
-    //     radeTooLowException& operator++();
-    //     radeTooLowException& operator--();
-    //     std::string getName() const;
-    //     int getGrade() const;
-    // };
+    class GradeTooLowException
+    {
+        virtual const char* what() const throw()
+        {
+            return "Errrrror low";
+        }
+    };
 };
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &Bureaucrat);
+
 
 
 #define BLACK   "\033[0;30m"

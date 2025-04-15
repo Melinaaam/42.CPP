@@ -1,8 +1,8 @@
 #include"Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string name) : _name(name)
+Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
-    std::cout << "default constrcutor call for " << name << std::endl;
+    // std::cout << "default constrcutor call for " << name << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy._name), _grade(copy._grade){}
@@ -19,7 +19,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "deconstrcutor call" << std::endl;
+    // std::cout << "deconstrcutor call" << std::endl;
 }
 
 std::string Bureaucrat::getName() const{return _name;}
@@ -28,27 +28,27 @@ int Bureaucrat::getGrade() const { return _grade;}
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& Bureaucrat) {
     out << Bureaucrat.getName();
-    // std::cout << "bureaucrat grade" << Bureaucrat.getGrade() << std::endl;
+    std::cout << " , bureaucrat grade " << Bureaucrat.getGrade() << std::endl;
     // std::cout << "bureaucrat grade" << std::endl;
     return out;
 }
+
+Bureaucrat& Bureaucrat::operator++()
+{
+    this->_grade += 1;
+    return *this;
+}
+
+Bureaucrat& Bureaucrat::Bureaucrat::operator--()
+{
+    this->_grade -= 1;
+    return *this;
+}
 /*********************************************************************** */
 
-// Bureaucrat::radeTooHighException& Bureaucrat::radeTooHighException::operator++()
+// Bureaucrat::GradeTooHighException
 // {
     
 // }
 
-// Bureaucrat::radeTooHighException& Bureaucrat::radeTooHighException::operator--(){}
-
-// std::string Bureaucrat::radeTooHighException::getName() const
-// {
-//     return Bureaucrat::getName();
-// }
-
-// int Bureaucrat::getGrade() const { return _grade;}
-// /************************************************************************************ */
-
-// Bureaucrat::radeTooLowException& Bureaucrat::radeTooLowException::operator++(){}
-
-// Bureaucrat::radeTooLowException& Bureaucrat::radeTooLowException::operator--(){}
+// Bureaucrat::GradeTooHighException& Bureaucrat::radeTooHighException::operator--(){}

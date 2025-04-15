@@ -2,16 +2,22 @@
 
 int main()
 {
-    Bureaucrat* miss = new Bureaucrat("miss");
+    Bureaucrat* miss = new Bureaucrat("miss", 10);
 
-    std::cout << "miss->getName() : " << miss->getName() << std::endl;
-    std::cout << "miss->getGrade() : " << miss->getGrade() << std::endl;
+    std::cout << "Try operator : " << RED << *miss << RESET << std::endl;
 
-    std::cout << std::endl;
-
-    std::cout << "Try operator : " << RED << miss << RESET << std::endl;
-
-    std::cout << std:: endl << " with gets : " << miss->getName() << " || " << miss->getGrade() << RESET << std::endl;
-
+    // std::cout << GREEN << *miss++ << RESET << std::endl;
+    // std::cout << GREEN << *++miss << RESET << std::endl;
+    // std::cout << "Try operator : " << RED << *miss << RESET << std::endl;
+    try
+    {
+        // throw Bureaucrat::GradeTooHighException();
+        std::cout << GREEN << *miss++ << RESET << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
     delete miss;
 }
