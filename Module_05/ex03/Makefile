@@ -1,4 +1,4 @@
-NAME = ex02
+NAME = ex03
 
 CC = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
@@ -12,7 +12,8 @@ SRCS_NAME = main.cpp \
 			AForm.cpp \
 			PresidentialPardonForm.cpp \
 			ShrubberyCreationForm.cpp \
-			RobotomyRequestForm.cpp 
+			RobotomyRequestForm.cpp \
+			Intern.cpp
 OBJS_NAME = $(SRCS_NAME:.cpp=.o)
 
 SRCS        =    $(addprefix $(SRCDIR)/,$(SRCS_NAME))
