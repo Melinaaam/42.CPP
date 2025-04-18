@@ -2,12 +2,12 @@
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45), _target("defaut")
 {
-	std::cout << CYAN << "RobotomyRequestForm default constructor called" << RESET << std::endl;
+	// std::cout << CYAN << "RobotomyRequestForm default constructor called" << RESET << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
-    std::cout << CYAN << "RobotomyRequestForm( " << target << " ) constructor called" << RESET << std::endl;
+    // std::cout << CYAN << "RobotomyRequestForm( " << target << " ) constructor called" << RESET << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : _target(copy._target){}
@@ -21,7 +21,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-    std::cout << CYAN << "RobotomyRequestForm deconstructor called" << RESET << std::endl;
+    // std::cout << CYAN << "RobotomyRequestForm deconstructor called" << RESET << std::endl;
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const& executor) const

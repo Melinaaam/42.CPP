@@ -2,12 +2,12 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), _target("defaut")
 {
-	std::cout << CYAN << "ShrubberyCreationForm default constructor called" << RESET << std::endl;
+	// std::cout << CYAN << "ShrubberyCreationForm default constructor called" << RESET << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
-    std::cout << CYAN << "ShrubberyCreationForm( " << target << " ) constructor called" << RESET << std::endl;
+    // std::cout << CYAN << "ShrubberyCreationForm( " << target << " ) constructor called" << RESET << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : _target(copy._target){}
@@ -21,7 +21,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-    std::cout << CYAN << "ShrubberyCreationForm deconstructor called" << RESET << std::endl;
+    // std::cout << CYAN << "ShrubberyCreationForm deconstructor called" << RESET << std::endl;
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const

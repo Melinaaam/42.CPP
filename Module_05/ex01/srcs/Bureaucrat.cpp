@@ -1,11 +1,12 @@
 #include"Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {
-    std::cout << CYAN << "Bureaucrat default constructor called" << RESET << std::endl;
+    // std::cout << CYAN << "Bureaucrat default constructor called" << RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
+    // std::cout << CYAN << "Bureaucrat constructor called" << RESET << std::endl;
     if (grade < 1)
         throw GradeTooHighException();
     if (grade > 150)
@@ -25,7 +26,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 
 Bureaucrat::~Bureaucrat()
 {
-
+    // std::cout << CYAN << "Bureaucrat deconstructor called" << RESET << std::endl;
 }
 
 std::string Bureaucrat::getName() const{return _name;}

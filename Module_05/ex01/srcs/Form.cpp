@@ -1,11 +1,12 @@
 #include "Form.hpp"
 
 Form::Form(): _formName("default"), _isSign(false), _gradeSign(1), _gradeExec(1){
-    std::cout << CYAN << "Form default constructor called" << RESET << std::endl;
+    // std::cout << CYAN << "Form default constructor called" << RESET << std::endl;
 }
 
 Form::Form(const std::string formName, const int gradeSign, const int gradeExec) : _formName(formName), _isSign(false), _gradeSign(gradeSign), _gradeExec(gradeExec)
 {
+    // std::cout << CYAN << "Form constructor called" << RESET << std::endl;
     if (gradeSign < 1 || gradeExec < 1)
         throw GradeTooHighException();
     if (gradeSign > 150 || gradeExec > 150)
@@ -23,7 +24,10 @@ Form& Form::operator=(const Form& other){
     }
     return *this;
 }
-Form::~Form(){}
+Form::~Form()
+{
+    // std::cout << CYAN << "Form deconstructor called" << RESET << std::endl;
+}
 
 std::string Form::getName() const {return _formName;}
 bool Form::getIsSign() const{return _isSign;}
