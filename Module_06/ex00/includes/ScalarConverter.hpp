@@ -3,10 +3,19 @@
 
 #include<iostream>
 #include<string>
+#include <cmath>
+#include <iomanip>
+#include<sstream>
+#include <limits>
+#include<cstdlib>
 
 /*rendre class ScalarConverter non instanciable
 static convert qui permet d'etre appele sans etre instancie
+    Privé ⟶ empêche les utilisateurs externes.
+    Non défini ⟶ empêche de créer involontairement une instance.
 
+Pas de decla abstraite : car A empêche d’instancier la classe elle‑même, mais pas une classe dérivée.
+Pas de decla Instance : car I instanciable via une dérivée, on veut aucun objet
 */
 
 class ScalarConverter
@@ -17,7 +26,6 @@ private:
     ScalarConverter();
     ScalarConverter(const ScalarConverter& copy);
     ScalarConverter& operator=(const ScalarConverter& other);
-
     ~ScalarConverter();
 };
 
