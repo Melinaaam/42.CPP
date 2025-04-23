@@ -5,15 +5,76 @@
 
 /* template class */
 
-template <class T>
-class Array 
-{
-public:
-    Array();
-    Array(unsigned int n);
-    Array(const Array& copy);
+template <typename T>
+class Array {
 private:
-}
+    T* _array;
+    unsigned int _n;
+public:
+//Construction with no parameter: Creates an empty array.
+    Array() : _array(NULL), _n(0) {}
+
+//Construction with an unsigned int n as a parameter: Creates an array of n elements initialized by default.
+    Array(unsigned int n) {
+        _n = n;
+        _array = new T[n]();
+    }
+
+// In both cases, modifying either the original array or its copy after copying musn’t affect the other array.
+    Array(const Array& copy): _array(NULL), _n(0)  {*this = copy;}
+
+ 
+    Array &operator=(const Array& other)
+    {
+        if (this != &other) {
+            if (_array != NULL) {
+                delete [] _array;
+                _array = NULL;
+            }
+            _n = other._n;
+            if (_n > 0) {
+                _array = new T[other._n];
+                for (unsigned int i(0); i < _n; i++)
+                    _array[i] = other._array[i];
+            }
+        }
+        return (*this);
+    }
+
+    ~Array(){ delete [] _array;}
+
+    T& operator[](unsigned int idx) // lecture/écriture
+    {
+        if (idx >= _n)
+            throw indexBounds();
+        return (this->_array[idx]);
+    }
+
+	const T& operator[](unsigned int idx) const// lecture seule
+    {
+        if (idx >= _n)
+            throw indexBounds();
+        return _array[idx];
+    }
+
+// returns the number of elements in the array. takes no parameters and must not modify the current instance.
+    unsigned int getSize() const {
+        return _n;
+    }
+
+    class indexBounds : public std::exception 
+    {
+        virtual const char* what() const throw(){
+            return "the index is out of bounds";
+        }
+    };
+};
+
+// template<typename T >
+// std::ostream& operator<<(std::ostream &out, Array<T> const &array) {
+//     out << array.getSize() << std::endl; 
+//     return out;
+// }
 
 #define BLACK   "\033[0;30m"
 #define RED     "\033[0;31m"
