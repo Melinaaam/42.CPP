@@ -20,13 +20,13 @@ Pas de decla Instance : car I instanciable via une dérivée, on veut aucun obje
 
 class ScalarConverter
 {
-public : 
-    static void convert(const std::string& arg);
+public :
+	static void convert(const std::string& arg);
 private:
-    ScalarConverter();
-    ScalarConverter(const ScalarConverter& copy);
-    ScalarConverter& operator=(const ScalarConverter& other);
-    ~ScalarConverter();
+	ScalarConverter();
+	ScalarConverter(const ScalarConverter& copy);
+	ScalarConverter& operator=(const ScalarConverter& other);
+	~ScalarConverter();
 };
 
 
@@ -47,3 +47,37 @@ private:
 
 
 #endif
+
+// #ifndef SCALARCONVERTER_HPP
+// # define SCALARCONVERTER_HPP
+
+// /*Colors*/
+// # define RESET "\e[0m"
+// # define RED "\e[1;91m"
+// # define GREEN "\e[1;92m"
+// # define BLUE "\e[1;94m"
+// # define YELLOW "\e[1;93m"
+// # define MAGENTA "\e[1;95m"
+// # define CYAN "\e[1;96m"
+// # define WHITE "\e[1;97m"
+// # define BLACK "\e[1;90m"
+// # define GRAY "\e[1;37m"
+
+// # include <iostream>
+// # include <sstream>
+// # include <iomanip>
+// # include <cstdlib>
+// # include <limits>
+
+// class ScalarConverter
+// {
+//   private:
+// 	ScalarConverter();
+// 	ScalarConverter(const ScalarConverter& cpy);
+// 	ScalarConverter& operator=(const ScalarConverter& cpy);
+// 	~ScalarConverter();
+//   public:
+// 	static void convert(std::string input);
+// };
+
+// #endif

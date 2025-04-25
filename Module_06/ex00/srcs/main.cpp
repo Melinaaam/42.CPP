@@ -10,13 +10,59 @@ int main(int argc, char **argv)
 	ScalarConverter::convert(argv[1]);
 	return (0);
 }
-//nan : not a number
-//+inf : infini pos
-//-inf : infini neg 
-    //pseudo litteraux speciaux
 
-// ./convert 12.1f   # doit tomber dans FLOAT
-// ./convert -.5f    # idem
-// ./convert 3.14    # doit tomber dans DOUBLE
-// ./convert 123     # INT
-// ./convert a       # CHAR
+
+// # erreurs d’arguments
+// ./convert
+// ./convert a b
+
+// # littéraux invalides
+// ./convert hello
+// ./convert 42..0
+
+// # char
+// ./convert c
+// ./convert '#'
+// ./convert ' '        # espace
+
+// # int dans les bornes
+// ./convert 0
+// ./convert 42
+// ./convert -42
+// ./convert 2147483647     # INT_MAX
+// ./convert -2147483648    # INT_MIN
+
+// # int hors bornes
+// ./convert 2147483648
+// ./convert -2147483649
+
+// # float “normaux”
+// ./convert 0.0f
+// ./convert 3.14f
+// ./convert -3.14f
+// ./convert 42.000f
+// ./convert +0.5f
+
+// # float pseudo-littéraux
+// ./convert nanf
+// ./convert inff
+// ./convert +inff
+// ./convert -inff
+
+// # double “normaux”
+// ./convert 0.0
+// ./convert 3.1415
+// ./convert -3.1415
+// ./convert 42.000
+// ./convert +0.5
+
+// # double pseudo-littéraux
+// ./convert nan
+// ./convert inf
+// ./convert +inf
+// ./convert -inf
+
+// # overflow en double/float
+// ./convert 99999999999
+// ./convert 9999999999999999
+

@@ -70,6 +70,8 @@
 		"stack": "cpp",
 		"variant": "cpp",
 		"fstream": "cpp",
-		"__assertion_handler": "cpp"
-	}
+		"__assertion_handler": "cpp",
+		"list": "cpp"
+	},
+	"C_Cpp.errorSquiggles": "disabled"
 }
