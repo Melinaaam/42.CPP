@@ -7,6 +7,7 @@
 #include <deque>
 #include <iterator>
 #include <list>
+#include <vector>
 
 //class dériver de std::stack<T>.
 //garder toutes les opérations de pile sans les réécrire.
@@ -14,7 +15,7 @@
 	//en utilisant sur le membre protected c (le conteneur sous-jacent).
 
 template <typename T>
-class MutantStack : public std::stack<T>
+class MutantStack : public std::stack<T> std::vector
 {
 
 public:
