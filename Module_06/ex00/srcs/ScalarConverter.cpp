@@ -1,5 +1,9 @@
 #include "ScalarConverter.hpp"
 
+//nan : pas un nb, valeur numerique impossible a identifier
+//+inf : infini pos
+// -inf : infini neg
+
 ScalarConverter::ScalarConverter(){}
 ScalarConverter::ScalarConverter(const ScalarConverter& copy){(void)copy;}
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other){return *this; (void)other;}
@@ -55,68 +59,28 @@ void printInt(double d, bool canot) {
     std::cout << static_cast<int>(d) << std::endl;
 }
 
-void printFloat(double d, bool pseudo, const std::string& arg, eType type) {
+void printFloat(double d, bool pseudo, const std::string& arg, eType type, bool overflowInt, bool overflowFloat) {
     std::cout << "float: ";
 
     float f = static_cast<float>(d);
-	if (arg >= "9999999999999") {
-		std::cout << "inff" << std::endl;
-		return;
-	}
-// double dd = std::strtod(arg.c_str(), nullptr);
-// if (dd > std::numeric_limits<float>::max()) {
-//     std::cout << "inff\n";
-//     return;
-// }
-// if (dd < -std::numeric_limits<float>::max()) {
-//     std::cout << "-inff\n";
-//     return;
-// }
-    // Check for infinity first
-    if (std::isinf(f)) {
-        std::cout << (f < 0 ? "-inff" : "inff") << std::endl;
+    if (overflowInt)
+    {
+        std::cout << std::fixed << std::setprecision(1)
+                  << static_cast<float>(d) << "f\n";
         return;
     }
-
-    // Check for NaN
-    if (std::isnan(f)) {
-        std::cout << "nanf" << std::endl;
-        return;
-    }
-
-    // For pseudo-literals
     if (pseudo) {
         if (std::isnan(f)) {
             std::cout << "nanf" << std::endl;
         } else if (std::isinf(f)) {
-            std::cout << (f < 0 ? "-inff" : "inff") << std::endl;
+            std::cout << (f < 0 ? "-inff" : "+inff") << std::endl;
         }
         return;
     }
-
-    // Handle scientific notation for large values
-    if (std::abs(d) > 999999999.0) {
-        std::ostringstream ss;
-        ss.precision(0);
-        ss << std::scientific << f;
-
-        // Replace e+0xx with e+xx
-        std::string s = ss.str();
-        size_t pos = s.find("e+0");
-        if (pos != std::string::npos)
-            s.erase(pos + 2, 1);
-
-        std::cout << s << "f" << std::endl;
-        return;
-    }
-
-    // For integers
     if (type == INT) {
-        std::cout << static_cast<int>(d) << ".0f" << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << static_cast<int>(d) << ".0f" << std::endl;
         return;
     }
-
-    // For floats
     if (type == FLOAT) {
         int prec = isNumber(arg);
         if (prec == 0) {
@@ -126,8 +90,11 @@ void printFloat(double d, bool pseudo, const std::string& arg, eType type) {
         }
         return;
     }
-
-    // For double
+    if (overflowFloat)
+    {
+        std::cout << "impossible" << std::endl;
+        return;
+    }
     if (type == DOUBLE) {
         int prec = isNumber(arg);
         if (prec == 0) {
@@ -137,53 +104,28 @@ void printFloat(double d, bool pseudo, const std::string& arg, eType type) {
         }
         return;
     }
-
-    // Default case (char)
     std::cout << std::fixed << std::setprecision(1) << f << "f" << std::endl;
 }
 
-
-void printDouble(double d, bool pseudo, const std::string& arg, eType type) {
+void printDouble(double d, bool pseudo, const std::string& arg, eType type, bool overflowDouble) {
     std::cout << "double: ";
-	if (arg >= "9999999999999") {
-		std::cout << "inf" << std::endl;
-		return;
-	}
-    if (std::isinf(d)) {
-        std::cout << (d < 0 ? "-inf" : "inf") << std::endl;
+    if (overflowDouble)
+    {
+        std::cout << "impossible" << std::endl;
         return;
     }
-
-    if (std::isnan(d)) {
-        std::cout << "nan" << std::endl;
-        return;
-    }
-
     if (pseudo) {
         if (std::isnan(d)) {
             std::cout << "nan" << std::endl;
         } else if (std::isinf(d)) {
-            std::cout << (d < 0 ? "-inf" : "inf") << std::endl;
+            std::cout << (d < 0 ? "-inf" : "+inf") << std::endl;
         }
-        return;
-    }
-
-    if (std::abs(d) > 1e+10) {
-        std::ostringstream ss;
-        ss << std::scientific << std::setprecision(0) << d;
-        std::string result = ss.str();
-        // Remove the leading "1." and adjust the exponent
-        if (result.find("e") != std::string::npos) {
-            result = result.substr(0, 1) + "e" + std::to_string(std::stoi(result.substr(result.find("e") + 1)) + 1);
-        }
-        std::cout << result << std::endl;
         return;
     }
     if (type == INT) {
-        std::cout << static_cast<int>(d) << ".0" << std::endl;
+        std::cout << arg << ".0" << std::endl;
         return;
     }
-
     if (type == FLOAT) {
         int prec = isNumber(arg);
         if (prec == 0) {
@@ -193,7 +135,6 @@ void printDouble(double d, bool pseudo, const std::string& arg, eType type) {
         }
         return;
     }
-
     if (type == DOUBLE) {
         int prec = isNumber(arg);
         if (prec == 0) {
@@ -205,8 +146,6 @@ void printDouble(double d, bool pseudo, const std::string& arg, eType type) {
     }
     std::cout << std::fixed << std::setprecision(1) << d << std::endl;
 }
-
-
 
 
 bool isInt(const std::string& s) {
@@ -290,25 +229,16 @@ eType detectType(const std::string& arg)
         return UNKNOWN;
 }
 
-bool checkIntOverflow(const std::string& arg) {
-    errno = 0;
-    char* endptr;
-    long l = std::strtol(arg.c_str(), &endptr, 10);
-
-    if (errno == ERANGE || l > std::numeric_limits<int>::max() || l < std::numeric_limits<int>::min()) {
-        return true;
-    }
-    return false;
-}
-
 void ScalarConverter::convert(const std::string& arg)
 {
     eType type = detectType(arg);
 
-    double double_val = 0.0;
-    float float_val = 0.0f;
-    bool pseudo = false;
-    bool overflow = false;
+    double double_val       = 0.0;
+    float float_val         = 0.0f;
+    bool pseudo             = false;
+    bool    overflowInt     = false;
+    bool    overflowFloat   = false;
+    bool    overflowDouble  = false;
 
     switch (type)
     {
@@ -318,32 +248,47 @@ void ScalarConverter::convert(const std::string& arg)
             break;
         }
         case INT: {
-            overflow = checkIntOverflow(arg);
-            // Toujours convertir en double pour obtenir la valeur correcte
-            double_val = strtod(arg.c_str(), NULL);
-            float_val = static_cast<float>(double_val);
+            char* endptr = NULL;
+            long l = std::strtol(arg.c_str(), &endptr, 10);
+            if (*endptr != '\0' ||
+                l > std::numeric_limits<int>::max() ||
+                l < std::numeric_limits<int>::min())
+                overflowInt = true;
+            double_val = static_cast<double>(l);
+            float_val  = static_cast<float>(double_val);
             break;
         }
         case PSEUDO_FLOAT: {
-            float_val = strtof(arg.c_str(), NULL);
-            double_val = static_cast<double>(float_val);
-            pseudo = true;
+            char* endptr = NULL;
+            float f = std::strtof(arg.c_str(), &endptr);
+            if (*endptr != '\0')
+                overflowFloat = true;
+            float_val  = f;
+            double_val = static_cast<double>(f);
             break;
         }
         case PSEUDO_DOUBLE: {
-            double_val = strtod(arg.c_str(), NULL);
-            float_val = static_cast<float>(double_val);
-            pseudo = true;
+            double_val = std::strtod(arg.c_str(), NULL);
+            float_val  = static_cast<float>(double_val);
+            pseudo     = true;
             break;
         }
         case FLOAT: {
-            float_val = strtof(arg.c_str(), NULL);
-            double_val = static_cast<double>(float_val);
+            char* endptr;
+            float f = std::strtof(arg.c_str(), &endptr);
+            if (*endptr != '\0')
+                overflowFloat = true;
+            float_val  = f;
+            double_val = static_cast<double>(f);
             break;
         }
         case DOUBLE: {
-            double_val = strtod(arg.c_str(), NULL);
-            float_val = static_cast<float>(double_val);
+            char* endptr;
+            double d = std::strtod(arg.c_str(), &endptr);
+            if (*endptr != '\0')
+                overflowDouble = true;
+            double_val = d;
+            float_val  = static_cast<float>(d);
             break;
         }
         case UNKNOWN: {
@@ -354,16 +299,9 @@ void ScalarConverter::convert(const std::string& arg)
             return;
         }
     }
-    if (type == INT && (arg.length() > 10 || overflow)) {
-        if (double_val > std::numeric_limits<int>::max() ||
-            double_val < std::numeric_limits<int>::min()) {
-            overflow = true;
-        }
-    }
-
-    printChar(double_val, overflow);
-    printInt(double_val, overflow);
-    printFloat(double_val, pseudo, arg, type);
-    printDouble(double_val, pseudo, arg, type);
+    printChar   (double_val, overflowInt);
+    printInt    (double_val, overflowInt);
+    printFloat  (float_val, pseudo, arg, type, overflowInt, overflowFloat);
+    printDouble (double_val, pseudo, arg, type, overflowDouble);
 }
 
