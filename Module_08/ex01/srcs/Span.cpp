@@ -25,7 +25,6 @@ void Span::addNumber(int nb){
 int Span::shortestSpan() const {
 	if (_values.size() < 2)
 		throw std::runtime_error("\033[0;31m Not enough numbers to find a span \033[0m");
-//Parcourir les éléments triés, calculer la différence adjacente la plus petite
 	std::vector<int> tmp = _values;
 	std::sort(tmp.begin(), tmp.end());
 	int minDiff = tmp[1] - tmp[0];

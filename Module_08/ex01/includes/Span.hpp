@@ -20,7 +20,7 @@ public:
 	~Span();
 
 	template<typename InputIt>
-	void addNumber(InputIt begin, InputIt end);
+	void RepeatAddNumber(InputIt begin, InputIt end);
 
 	void addNumber(int nb);
 	int shortestSpan() const;
@@ -32,7 +32,7 @@ public:
 };
 
 template<typename InputIt>
-void Span::addNumber(InputIt begin, InputIt end) {
+void Span::RepeatAddNumber(InputIt begin, InputIt end) {
 	std::size_t rangeSize = static_cast<std::size_t>(std::distance(begin, end));
 	if (_values.size() + rangeSize > _n)
 		throw std::runtime_error("\033[0;31m Not enough space to insert range \033[0m");

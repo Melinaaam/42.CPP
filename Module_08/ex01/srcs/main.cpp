@@ -20,12 +20,14 @@ int main()
 
 	std::cout << std::endl << CYAN << " ---- My tests ---- " << RESET << std::endl;
 
+
 	Span mySpan(4);
 	try {
 		mySpan.addNumber(1);
 		mySpan.addNumber(2);
 		mySpan.addNumber(3);
 		mySpan.addNumber(4);
+		mySpan.addNumber(5);
 		std::cout << YELLOW << " print mySpan " << RESET << std::endl;
 		printSpan(mySpan);
 		std::cout << "The shortestSpan : [" << mySpan.shortestSpan() << "]" << std::endl;
@@ -41,8 +43,8 @@ int main()
 	for (int i = 0; i < 20; ++i)
 		vector1.push_back(i * 3);
 
-	Span anotherSpan(20);
-	anotherSpan.addNumber(vector1.begin(), vector1.end());
+	Span anotherSpan(20);;
+	anotherSpan.RepeatAddNumber(vector1.begin(), vector1.end());
 
 	std::cout << "Contenu après addNumber(vector): ";
 	printSpan(anotherSpan);
@@ -53,7 +55,7 @@ int main()
 	std::cout << std::endl << CYAN << " Tests with C tab " << RESET << std::endl;
 	int arr[] = { 42, 7, 13, 99, 0 };
 	Span SpanArray(5);
-	SpanArray.addNumber(arr, arr + 5);
+	SpanArray.RepeatAddNumber(arr, arr + 5);
 
 	std::cout << "Contenu après addNumber(array): ";
 	printSpan(SpanArray);
@@ -63,7 +65,7 @@ int main()
 
 	try {
 		std::vector<int> vector2(10, 1);
-		SpanArray.addNumber(vector2.begin(), vector2.end());
+		SpanArray.RepeatAddNumber(vector2.begin(), vector2.end());
 	}
 	catch (std::exception& e) {
 		std::cout << "Exception bien levée : " << e.what() << '\n';

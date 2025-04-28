@@ -14,8 +14,8 @@ void printChar(char const& c) {
 int main( void ) 
 {
     int tab[] = { 1, 2, 3 , 4};
-    std::string tab2[] = { "hello", "world" };
-    char tab3[] = {'H','E'};
+    std::string tab2[] = { "hello", " ", "world" };
+    char tab3[] = {'H','E', 'L', 'L', 'O'};
     
     std::cout << CYAN << "--- iter with int ---" << RESET << std::endl;
     iter(tab, 4, printInt);

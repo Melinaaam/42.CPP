@@ -41,10 +41,10 @@ int main( void ) {
     std::cout << YELLOW << " --- tests with string ---"<< RESET << std::endl;
     std::string c = "chaine1";
     std::string d = "chaine2";
-    std::cout << CYAN << "string c = " << a << ", string d = " << b << RESET << std::endl;
+    std::cout << CYAN << "string c = " << c << ", string d = " << d << RESET << std::endl;
     std::cout << std::endl << MAGENTA << "call template swap"<< RESET << std::endl;
     ::swap(c, d);
-    std::cout << CYAN << "string c = " << a << ", string d = " << b << RESET << std::endl;
+    std::cout << CYAN << "string c = " << c << ", string d = " << d << RESET << std::endl;
 
     std::cout << std::endl << MAGENTA << "call template min & max"<< RESET << std::endl;
     std::cout << CYAN << "min( c, d ) = " << ::min( c, d ) << RESET << std::endl;
