@@ -32,7 +32,12 @@ BitcoinExchange::BitcoinExchange(const std::string& file) {loadDatabase(file);}
 
 float BitcoinExchange::getpriceByDate(const std::string& date) const
 {
-
+	std::map<std::string, float>::const_iterator it = _priceByDate.lower_bound(date);
+	if (it != _priceByDate.end() && it->first == date)
+		return it->second;
+	if (it != _priceByDate.begin())
+		return (--it)->second;
+	throw std::runtime_error("No rate available for the given date.");
 }
 
 void BitcoinExchange::loadDatabase(const std::string& filename)

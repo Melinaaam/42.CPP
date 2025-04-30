@@ -28,7 +28,6 @@ public:
 private:
 	std::map<std::string, float> _priceByDate;
 	void loadDatabase(const std::string& filename);
-
 };
 
 #define BLACK   "\033[0;30m"
