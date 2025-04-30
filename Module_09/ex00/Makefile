@@ -1,4 +1,4 @@
-NAME = ex00
+NAME = btc
 
 CC = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
@@ -7,7 +7,7 @@ INCLUDES = -Iincludes
 SRCDIR = srcs
 OBJDIR = objets
 
-SRCS_NAME = main.cpp 
+SRCS_NAME = main.cpp
 
 OBJS_NAME = $(SRCS_NAME:.cpp=.o)
 
