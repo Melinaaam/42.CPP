@@ -8,6 +8,7 @@
 #include <sstream>
 #include <cstdlib>
 #include <stdexcept>
+#include <cctype>
 
 class BitcoinExchange {
 public:
@@ -17,8 +18,7 @@ public:
 	~BitcoinExchange();
 
 	BitcoinExchange(const std::string& file);
-	float getpriceByDate(const std::string& date) const;
-
+	double getpriceByDate(const std::string& date) const;
 
 	class FailOpenFile: public std::exception {
 		public:
@@ -26,7 +26,7 @@ public:
 	};
 
 private:
-	std::map<std::string, float> _priceByDate;
+	std::map<std::string, double> _priceByDate;
 	void loadDatabase(const std::string& filename);
 };
 
