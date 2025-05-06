@@ -27,10 +27,18 @@ public:
 			return "Invalid argument !";
 	}
 };
+	std::vector<std::pair<int, int > > makePairs(const std::vector<int>& vec) const;
+	std::vector<int> maxInMainChain(const std::vector<std::pair<int, int> >& pairs) const;
+	std::vector<int> minInPending(const std::vector<std::pair<int, int> >& pairs) const;
+
 
 private:
 	std::vector<int> _vector;
 	std::deque<int> _deque;
+
+	// std::vector<std::pair<int, int > > makePairs(const std::vector<int>& vec) const;
+	// std::vector<int> maxInMainChain(const std::vector<std::pair<int, int> >& pairs) const;
+	// std::vector<int> minInPending(const std::vector<std::pair<int, int> >& pairs) const;
 
 	void mergeInsertSortVector(std::vector<int>& vec);
 	void mergeInsertSortDeque(std::deque<int>& deq);
