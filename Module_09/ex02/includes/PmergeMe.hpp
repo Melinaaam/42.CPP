@@ -18,7 +18,7 @@ public:
 	const std::deque<int>& getDeque() const;
 
 	void parseArgs(char** argv, int argc);
-	void sort();
+
 	void measureVectorSort();
 	void measureDequeSort();
 	class InvalidArg : public std::exception {
@@ -31,7 +31,9 @@ public:
 	std::vector<int> maxInMainChain(const std::vector<std::pair<int, int> >& pairs) const;
 	std::vector<int> minInPending(const std::vector<std::pair<int, int> >& pairs) const;
 	std::vector<int> mergeInsertSortVector(const std::vector<int>& vec);
+	std::vector<size_t> generateJacobsthalIndices(size_t size) const;
 
+	void insertWithBinome(std::vector<int>& mainChain, const std::vector<int>& pending, const std::vector<std::pair<int, int> >& pairs);
 private:
 	std::vector<int> _vector;
 	std::deque<int> _deque;
@@ -40,8 +42,8 @@ private:
 	// std::vector<int> maxInMainChain(const std::vector<std::pair<int, int> >& pairs) const;
 	// std::vector<int> minInPending(const std::vector<std::pair<int, int> >& pairs) const;
 
-	std::vector<int> mergeInsertSortVectorAndReturn(std::vector<int>& vec);
-	void mergeInsertSortDeque(std::deque<int>& deq);
+	std::vector<int> mergeInsertSortVector(std::vector<int>& vec);
+	// std::deque<int> mergeInsertSortDeque(std::deque<int>& deq);
 
 	bool isNumber(const std::string& str) const;
 };

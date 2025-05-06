@@ -17,12 +17,7 @@ PmergeMe::~PmergeMe() {}
 const std::vector<int>& PmergeMe::getVector() const {return _vector;}
 const std::deque<int>& PmergeMe::getDeque() const {return _deque;}
 
-void PmergeMe::sort() {}
-
-void PmergeMe::mergeInsertSortDeque(std::deque<int>& deq) {
-	(void)deq;
-}
-
+/***********************PARSING***********************/
 void PmergeMe::parseArgs(char** argv, int argc) {
 	for (int i = 1; i < argc; ++i) {
 		std::string arg = argv[i];
@@ -46,6 +41,7 @@ bool PmergeMe::isNumber(const std::string& str) const {
 	return true;
 }
 
+/***********************TIMING***********************/
 void PmergeMe::measureVectorSort() {
 	std::vector<int> vecCopy = _vector;
 	clock_t start = clock();
@@ -58,19 +54,31 @@ void PmergeMe::measureVectorSort() {
 void PmergeMe::measureDequeSort() {
 	std::deque<int> deqCopy = _deque;
 	clock_t start = clock();
-	mergeInsertSortDeque(deqCopy);
+	// mergeInsertSortDeque(deqCopy);
 	clock_t end = clock();
 	double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
 	std::cout << "Time to process a range of " << deqCopy.size() << " elements with std::vector : " << duration << " us" << std::endl;
 }
 
+/***********************FORDJ ALGO VECTOR***********************/
 std::vector<int> PmergeMe::mergeInsertSortVector(const std::vector<int>& vec) {
 	std::vector<std::pair<int, int> > pairs = makePairs(vec);
 	std::vector<int> mainChain = maxInMainChain(pairs);
 	std::sort(mainChain.begin(), mainChain.end());
 	std::vector<int> pendingChain = minInPending(pairs);
+
+	insertWithBinome(mainChain, pendingChain, pairs);
+
+	// Si taille impaire → insérer le dernier élément
+	if (vec.size() % 2 != 0) {
+		int last = vec.back();
+		std::vector<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), last);
+		mainChain.insert(it, last);
+	}
+
 	return mainChain;
 }
+
 
 std::vector<std::pair<int, int> > PmergeMe::makePairs(const std::vector<int>& vec) const {
 	std::vector<std::pair<int, int> > pairs;
@@ -105,3 +113,70 @@ std::vector<int> PmergeMe::minInPending(const std::vector<std::pair<int, int> >&
 	}
 	return pendingChain;
 }
+
+std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t size) const {
+	std::vector<size_t> indices;
+	if (size == 0)
+		return indices;
+
+	std::vector<size_t> jacob;
+	jacob.push_back(0);
+	jacob.push_back(1);
+	while (true) {
+		size_t next = jacob[jacob.size() - 1] + 2 * jacob[jacob.size() - 2];
+		if (next >= size)
+			break;
+		jacob.push_back(next);
+	}
+	std::vector<bool> added(size, false);
+	for (size_t i = 1; i < jacob.size(); ++i) {
+		if (jacob[i] < size && !added[jacob[i]]) {
+			indices.push_back(jacob[i]);
+			added[jacob[i]] = true;
+		}
+	}
+	for (size_t i = 0; i < size; ++i) {
+		if (!added[i])
+			indices.push_back(i);
+	}
+	return indices;
+}
+
+void PmergeMe::insertWithBinome(std::vector<int>& mainChain, const std::vector<int>& pending, const std::vector<std::pair<int, int> >& pairs) {
+	std::vector<std::pair<int, int> > binomeList;
+
+	// Construction du tableau (min, max)
+	for (size_t i = 0; i < pairs.size(); ++i) {
+		int a = pairs[i].first;
+		int b = pairs[i].second;
+		if (a > b)
+			binomeList.push_back(std::make_pair(b, a));
+		else
+			binomeList.push_back(std::make_pair(a, b));
+	}
+
+	// Ordre d'insertion selon Jacobsthal
+	std::vector<size_t> order = generateJacobsthalIndices(pending.size());
+
+	for (size_t i = 0; i < order.size(); ++i) {
+		int value = pending[order[i]];
+		int binome = -1;
+
+		// Trouver le binôme correspondant dans binomeList
+		for (size_t j = 0; j < binomeList.size(); ++j) {
+			if (binomeList[j].first == value) {
+				binome = binomeList[j].second;
+				break;
+			}
+		}
+
+		// Chercher où insérer avant le binôme
+		std::vector<int>::iterator binomeIt = std::find(mainChain.begin(), mainChain.end(), binome);
+		std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), binomeIt, value);
+		mainChain.insert(pos, value);
+	}
+}
+
+/***********************FORDJ ALGO DEQUE***********************/
+
+// std::deque<int> PmergeMe::mergeInsertSortDeque(std::deque<int>& deq) {(void)deq;}
