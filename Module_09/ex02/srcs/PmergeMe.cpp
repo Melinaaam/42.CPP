@@ -17,11 +17,11 @@ PmergeMe::~PmergeMe() {}
 const std::vector<int>& PmergeMe::getVector() const {return _vector;}
 const std::deque<int>& PmergeMe::getDeque() const {return _deque;}
 
-// void PmergeMe::sort() {}
+void PmergeMe::sort() {}
 
-// void PmergeMe::mergeInsertSortDeque(std::deque<int>& deq) {
-// 	(void)deq;
-// }
+void PmergeMe::mergeInsertSortDeque(std::deque<int>& deq) {
+	(void)deq;
+}
 
 void PmergeMe::parseArgs(char** argv, int argc) {
 	for (int i = 1; i < argc; ++i) {
@@ -67,6 +67,7 @@ void PmergeMe::measureDequeSort() {
 void PmergeMe::mergeInsertSortVector(std::vector<int>& vec) {
 	std::vector<std::pair<int, int> > pairs = makePairs(vec);
 	std::vector<int> mainChain = maxInMainChain(pairs);
+	std::sort(mainChain.begin(), mainChain.end());
 	std::vector<int> pendingChain = minInPending(pairs);
 	(void)vec;
 }
