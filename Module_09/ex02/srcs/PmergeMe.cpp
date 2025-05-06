@@ -45,7 +45,6 @@ bool PmergeMe::isNumber(const std::string& str) const {
 void PmergeMe::measureVectorSort() {
 	std::vector<int> vecCopy = _vector;
 	clock_t start = clock();
-	// mergeInsertSortVector(vecCopy);
 	clock_t end = clock();
 	double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
 	std::cout << "Time to process a range of " << vecCopy.size() << " elements with std::vector : " << duration << " us" << std::endl;
@@ -53,21 +52,12 @@ void PmergeMe::measureVectorSort() {
 
 void PmergeMe::measureDequeSort() {
 	std::deque<int> deqCopy = _deque;
-
 	clock_t start = clock();
 	std::deque<int> sorted = mergeInsertSortDeque(deqCopy);
 	clock_t end = clock();
-
 	double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
-
-	std::cout << CYAN << "✅ Final sorted deque: ";
-	for (size_t i = 0; i < sorted.size(); ++i)
-		std::cout << sorted[i] << " ";
-	std::cout << RESET << std::endl;
-
 	std::cout << "Time to process a range of " << deqCopy.size() << " elements with std::deque : " << duration << " us" << std::endl;
 }
-
 
 /***********************FORDJ ALGO VECTOR***********************/
 std::vector<int> PmergeMe::mergeInsertSortVector(const std::vector<int>& vec) {
@@ -77,11 +67,8 @@ std::vector<int> PmergeMe::mergeInsertSortVector(const std::vector<int>& vec) {
 	std::vector<int> pendingChain = minInPending(pairs);
 
 	insertWithBinome(mainChain, pendingChain, pairs);
-
-	// Si taille impaire → insérer le dernier élément
 	if (vec.size() % 2 != 0) {
 		int last = vec.back();
-
 		std::cout << YELLOW << "🔸 Inserting unpaired last element: " << last << RESET << std::endl;
 		std::cout << "    before insert: ";
 		for (size_t k = 0; k < mainChain.size(); ++k)
@@ -169,20 +156,6 @@ std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t size) const {
 	}
 	return indices;
 }
-
-// std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t size) const {
-//     std::vector<size_t> jac;
-//     size_t a = 0, b = 1;
-//     while (b <= size)
-//     {
-//         jac.push_back(b);
-//         size_t tmp = b;
-//         b = b + 2 * a;
-//         a = tmp;
-//     }
-//     return (jac);
-// }
-
 
 void PmergeMe::insertWithBinome(std::vector<int>& mainChain, const std::vector<int>& pending, const std::vector<std::pair<int, int> >& pairs) {
 	std::vector<std::pair<int, int> > binomeList;
