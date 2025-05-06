@@ -49,7 +49,7 @@ bool PmergeMe::isNumber(const std::string& str) const {
 void PmergeMe::measureVectorSort() {
 	std::vector<int> vecCopy = _vector;
 	clock_t start = clock();
-	mergeInsertSortVector(vecCopy);
+	// mergeInsertSortVector(vecCopy);
 	clock_t end = clock();
 	double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
 	std::cout << "Time to process a range of " << vecCopy.size() << " elements with std::vector : " << duration << " us" << std::endl;
@@ -64,12 +64,12 @@ void PmergeMe::measureDequeSort() {
 	std::cout << "Time to process a range of " << deqCopy.size() << " elements with std::vector : " << duration << " us" << std::endl;
 }
 
-void PmergeMe::mergeInsertSortVector(std::vector<int>& vec) {
+std::vector<int> PmergeMe::mergeInsertSortVector(const std::vector<int>& vec) {
 	std::vector<std::pair<int, int> > pairs = makePairs(vec);
 	std::vector<int> mainChain = maxInMainChain(pairs);
 	std::sort(mainChain.begin(), mainChain.end());
 	std::vector<int> pendingChain = minInPending(pairs);
-	(void)vec;
+	return mainChain;
 }
 
 std::vector<std::pair<int, int> > PmergeMe::makePairs(const std::vector<int>& vec) const {

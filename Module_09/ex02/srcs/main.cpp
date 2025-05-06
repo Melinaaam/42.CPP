@@ -36,12 +36,16 @@ int main(int argc, char** argv) {
 		std::vector<int> maxs = pm.maxInMainChain(pairs);
 		printSequence("Main chain (max):", maxs);
 
+		std::vector<int> sortedMain = pm.mergeInsertSortVector(pm.getVector());
+		printSequence("Main chain (sorted):", sortedMain);
+
 		std::vector<int> mins = pm.minInPending(pairs);
 		printSequence("Pending (min):", mins);
 
 		pm.measureVectorSort();
-		pm.measureDequeSort();
 		printSequence("After:", pm.getVector());
+
+
 	}
 	catch (const std::exception& e) {
 		std::cerr << RED << "❌ " << e.what() << RESET << std::endl;

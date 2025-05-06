@@ -25,12 +25,12 @@ public:
 	public:
 		virtual const char* what() const throw() {
 			return "Invalid argument !";
-	}
-};
+		}
+	};
 	std::vector<std::pair<int, int > > makePairs(const std::vector<int>& vec) const;
 	std::vector<int> maxInMainChain(const std::vector<std::pair<int, int> >& pairs) const;
 	std::vector<int> minInPending(const std::vector<std::pair<int, int> >& pairs) const;
-
+	std::vector<int> mergeInsertSortVector(const std::vector<int>& vec);
 
 private:
 	std::vector<int> _vector;
@@ -40,7 +40,7 @@ private:
 	// std::vector<int> maxInMainChain(const std::vector<std::pair<int, int> >& pairs) const;
 	// std::vector<int> minInPending(const std::vector<std::pair<int, int> >& pairs) const;
 
-	void mergeInsertSortVector(std::vector<int>& vec);
+	std::vector<int> mergeInsertSortVectorAndReturn(std::vector<int>& vec);
 	void mergeInsertSortDeque(std::deque<int>& deq);
 
 	bool isNumber(const std::string& str) const;
