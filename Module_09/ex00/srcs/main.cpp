@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
 			continue;
 		}
 		if (value > 1000) {
-			std::cerr << RED << "Error: too large a number." << RESET << std::endl;
+			std::cerr << RED << "Error: too large number." << RESET << std::endl;
 			continue;
 		}
 		double goodPrice = btc.getpriceByDate(date);
