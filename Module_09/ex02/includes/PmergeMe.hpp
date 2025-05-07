@@ -8,6 +8,9 @@
 #include <ctime>
 #include <stdexcept>
 #include <utility>
+#include <sstream>
+#include <algorithm>
+#include <sstream>
 
 class PmergeMe {
 public:
@@ -21,10 +24,6 @@ public:
 	const std::vector<int>& getVector() const;
 	const std::deque<int>& getDeque() const;
 
-	void measureVectorSort();
-	void measureDequeSort();
-
-	// Exception personnalisée
 	class InvalidArg : public std::exception {
 	public:
 		virtual const char* what() const throw() {
@@ -32,22 +31,20 @@ public:
 		}
 	};
 
-	// Partie vector
 	std::vector<std::pair<int, int> > makePairs(const std::vector<int>& vec) const;
 	std::vector<int> maxInMainChain(const std::vector<std::pair<int, int> >& pairs) const;
 	std::vector<int> minInPending(const std::vector<std::pair<int, int> >& pairs) const;
 	std::vector<int> mergeInsertSortVector(const std::vector<int>& vec);
 	void insertWithBinome(std::vector<int>& mainChain, const std::vector<int>& pending, const std::vector<std::pair<int, int> >& pairs);
 
-	// Partie deque
 	std::deque<std::pair<int, int> > makePairsDeque(const std::deque<int>& deq) const;
 	std::deque<int> maxInMainChainDeque(const std::deque<std::pair<int, int> >& pairs) const;
 	std::deque<int> minInPendingDeque(const std::deque<std::pair<int, int> >& pairs) const;
 	std::deque<int> mergeInsertSortDeque(const std::deque<int>& deq);
 	void insertWithBinomeDeque(std::deque<int>& mainChain, const std::deque<int>& pending, const std::deque<std::pair<int, int> >& pairs);
 
-	// Outils communs
 	std::vector<size_t> generateJacobsthalIndices(size_t size) const;
+	void sortAlgo(void);
 
 private:
 	std::vector<int> _vector;

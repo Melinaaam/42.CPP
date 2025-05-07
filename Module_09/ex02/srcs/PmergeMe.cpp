@@ -23,7 +23,11 @@ void PmergeMe::parseArgs(char** argv, int argc) {
 		std::string arg = argv[i];
 		if (!isNumber(arg))
 			throw PmergeMe::InvalidArg();
-		int number = std::stoi(arg);
+		std::istringstream iss(arg);
+		int number;
+		iss >> number;
+		if (iss.fail() || !iss.eof())
+			throw PmergeMe::InvalidArg();
 		if (number < 0)
 			throw PmergeMe::InvalidArg();
 		_vector.push_back(number);
@@ -41,23 +45,6 @@ bool PmergeMe::isNumber(const std::string& str) const {
 	return true;
 }
 
-/***********************TIMING***********************/
-void PmergeMe::measureVectorSort() {
-	std::vector<int> vecCopy = _vector;
-	clock_t start = clock();
-	clock_t end = clock();
-	double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
-	std::cout << "Time to process a range of " << vecCopy.size() << " elements with std::vector : " << duration << " us" << std::endl;
-}
-
-void PmergeMe::measureDequeSort() {
-	std::deque<int> deqCopy = _deque;
-	clock_t start = clock();
-	std::deque<int> sorted = mergeInsertSortDeque(deqCopy);
-	clock_t end = clock();
-	double duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
-	std::cout << "Time to process a range of " << deqCopy.size() << " elements with std::deque : " << duration << " us" << std::endl;
-}
 
 /***********************FORDJ ALGO VECTOR***********************/
 std::vector<int> PmergeMe::mergeInsertSortVector(const std::vector<int>& vec) {
@@ -69,28 +56,10 @@ std::vector<int> PmergeMe::mergeInsertSortVector(const std::vector<int>& vec) {
 	insertWithBinome(mainChain, pendingChain, pairs);
 	if (vec.size() % 2 != 0) {
 		int last = vec.back();
-		std::cout << YELLOW << "🔸 Inserting unpaired last element: " << last << RESET << std::endl;
-		std::cout << "    before insert: ";
-		for (size_t k = 0; k < mainChain.size(); ++k)
-			std::cout << mainChain[k] << " ";
-		std::cout << std::endl;
 
 		std::vector<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), last);
 		mainChain.insert(it, last);
-
-		std::cout << "    after  insert: ";
-		for (size_t k = 0; k < mainChain.size(); ++k)
-			std::cout << mainChain[k] << " ";
-		std::cout << "\n" << std::endl;
-
 	}
-
-	std::cout << GREEN << "✅ Final sorted mainChain: ";
-	for (size_t i = 0; i < mainChain.size(); ++i)
-		std::cout << mainChain[i] << " ";
-	std::cout << RESET << std::endl;
-
-
 	return mainChain;
 }
 
@@ -160,7 +129,6 @@ std::vector<size_t> PmergeMe::generateJacobsthalIndices(size_t size) const {
 void PmergeMe::insertWithBinome(std::vector<int>& mainChain, const std::vector<int>& pending, const std::vector<std::pair<int, int> >& pairs) {
 	std::vector<std::pair<int, int> > binomeList;
 
-	// Construction du tableau (min, max)
 	for (size_t i = 0; i < pairs.size(); ++i) {
 		int a = pairs[i].first;
 		int b = pairs[i].second;
@@ -169,23 +137,16 @@ void PmergeMe::insertWithBinome(std::vector<int>& mainChain, const std::vector<i
 		else
 			binomeList.push_back(std::make_pair(a, b));
 	}
-
-	// Ordre d'insertion selon Jacobsthal
 	std::vector<size_t> order = generateJacobsthalIndices(pending.size());
-
 	for (size_t i = 0; i < order.size(); ++i) {
 		int value = pending[order[i]];
 		int binome = -1;
-
-		// Trouver le binôme correspondant dans binomeList
 		for (size_t j = 0; j < binomeList.size(); ++j) {
 			if (binomeList[j].first == value) {
 				binome = binomeList[j].second;
 				break;
 			}
 		}
-
-		// Chercher où insérer avant le binôme
 		std::vector<int>::iterator binomeIt = std::find(mainChain.begin(), mainChain.end(), binome);
 		std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), binomeIt, value);
 		mainChain.insert(pos, value);
@@ -201,13 +162,11 @@ std::deque<int> PmergeMe::mergeInsertSortDeque(const std::deque<int>& deq) {
 	std::deque<int> pendingChain = minInPendingDeque(pairs);
 
 	insertWithBinomeDeque(mainChain, pendingChain, pairs);
-
 	if (deq.size() % 2 != 0) {
 		int last = deq.back();
 		std::deque<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), last);
 		mainChain.insert(it, last);
 	}
-
 	return mainChain;
 }
 
@@ -248,9 +207,7 @@ void PmergeMe::insertWithBinomeDeque(std::deque<int>& mainChain, const std::dequ
 		else
 			binomeList.push_back(std::make_pair(a, b));
 	}
-
 	std::vector<size_t> order = generateJacobsthalIndices(pending.size());
-
 	for (size_t i = 0; i < order.size(); ++i) {
 		int value = pending[order[i]];
 		int binome = -1;
@@ -261,9 +218,59 @@ void PmergeMe::insertWithBinomeDeque(std::deque<int>& mainChain, const std::dequ
 				break;
 			}
 		}
-
 		std::deque<int>::iterator binomeIt = std::find(mainChain.begin(), mainChain.end(), binome);
 		std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), binomeIt, value);
 		mainChain.insert(pos, value);
 	}
+}
+
+static void printSequenceVector(const std::string& label, const std::vector<int>& vec) {
+	std::cout << label << CYAN;
+	for (size_t i = 0; i < vec.size(); ++i)
+		std::cout << " " << vec[i];
+	std::cout << RESET << std::endl;
+}
+
+static void printSequenceDeque(const std::string& label, const std::deque<int>& deq) {
+	std::cout << label << MAGENTA ;
+	for (size_t i = 0; i < deq.size(); ++i)
+		std::cout << " " << deq[i];
+	std::cout << RESET << std::endl;
+}
+
+void PmergeMe::sortAlgo()
+{
+	std::cout << BOLD << "Before " << RESET;
+	printSequenceVector("vector", _vector);
+	std::cout << BOLD << "Before " << RESET;
+	printSequenceDeque("deque", _deque);
+
+	clock_t startV = clock();
+	_vector = mergeInsertSortVector(_vector);
+	clock_t endV = clock();
+	double durationV = static_cast<double>(endV - startV) / CLOCKS_PER_SEC * 1000000;
+
+	clock_t startD = clock();
+	_deque = mergeInsertSortDeque(_deque);
+	clock_t endD = clock();
+	double durationD = static_cast<double>(endD - startD) / CLOCKS_PER_SEC * 1000000;
+
+	std::cout << BOLD << "After " << RESET;
+	printSequenceVector("vector", _vector);
+	std::cout << BOLD << "After " << RESET;
+	printSequenceDeque("deque", _deque);
+
+	std::cout << "Time to process a range of " << _vector.size() << " elements with std::" << "vector" << ": ";
+	if (durationV > durationD)
+		std::cout << RED << durationV;
+	else
+		std::cout << GREEN << durationV;
+
+	std::cout << RESET << " us" << std::endl;
+	std::cout << "Time to process a range of " << _deque.size() << " elements with std::" << "deque" << ": ";
+	if (durationD > durationV)
+		std::cout << RED << durationD;
+	else
+		std::cout << GREEN << durationD;
+	std::cout << RESET << " us" << std::endl;
 }
