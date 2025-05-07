@@ -27,6 +27,8 @@ std::string cleanWhitespace(const std::string& str) {
 bool parseValue(const std::string& valueStr, double& value) {
 	std::istringstream stream(valueStr);
 	stream >> value;
+	if (!(stream.eof()))
+        return false;
 	return !stream.fail();
 }
 
